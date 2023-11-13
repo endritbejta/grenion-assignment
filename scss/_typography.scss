@@ -1,0 +1,24 @@
+%heading {
+  font-family: $font-primary;
+  font-weight: 400;
+}
+
+.heading-1 {
+  @extend %heading;
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.heading-2 {
+  @extend %heading;
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.heading-3 {
+  @extend %heading;
+  font-size: 2.5rem;
+  line-height: 1;
+}

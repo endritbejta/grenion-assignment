@@ -1,0 +1,32 @@
+.header {
+  font-size: 2rem;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 10px 20px;
+  justify-content: space-between;
+  color: white;
+  &__navigation {
+    display: flex;
+    gap: 40px;
+  }
+  img {
+    fill: white;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style-type: none;
+  }
+
+  &__route-item,
+  &__route-item a {
+    display: flex;
+    align-items: center;
+  }
+}

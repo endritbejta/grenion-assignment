@@ -1,0 +1,32 @@
+$color-primary: #32374a;
+$color-primary-dark: black;
+
+$color-secondary: red;
+
+$font-primary: sans-serif;
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // default size is 16px with this we make it so 1 rem is equal to 10px
+}
+
+body {
+  font-family: $font-primary;
+  font-weight: 300;
+  color: $color-primary;
+  line-height: 1.6;
+}
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
