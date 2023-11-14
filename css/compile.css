@@ -254,17 +254,17 @@ a:visited {
   top: 25%;
 }
 .products__slider-prev {
-  left: 20px;
+  left: 150px;
   opacity: 0;
   pointer-events: none;
 }
 .products__slider-next {
-  right: 20px;
+  right: 150px;
 }
 .products__product {
   width: 250px;
-  min-width: 240px;
-  height: 350px;
+  min-width: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -320,16 +320,15 @@ a:visited {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  animation: comeIntoView 0.9s ease forwards;
-  animation-play-state: paused;
+  animation: comeIntoView 0.9s ease;
 }
 .products__image-holder .cover,
 .products__image-holder .image {
-  position: absolute;
   height: 100%;
   width: 100%;
   z-index: 1;
   transition: transform 0.3s ease;
+  position: absolute;
   background-position: top right;
   background-size: cover;
 }
@@ -373,7 +372,7 @@ a:visited {
     transform: scale(3);
     opacity: 0;
   }
-  80% {
+  50% {
     opacity: 0.2;
   }
   100% {

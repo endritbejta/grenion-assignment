@@ -175,20 +175,20 @@
     }
 
     &-prev {
-      left: 20px;
+      left: 150px;
       opacity: 0;
       pointer-events: none;
     }
 
     &-next {
-      right: 20px;
+      right: 150px;
     }
   }
 
   &__product {
     width: 250px;
-    min-width: 240px;
-    height: 350px;
+    min-width: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -251,15 +251,15 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    animation: comeIntoView 0.9s ease forwards;
-    animation-play-state: paused;
+    animation: comeIntoView 0.9s ease;
+    // animation-play-state: paused;
     .cover,
     .image {
-      position: absolute;
       height: 100%;
       width: 100%;
       z-index: 1;
       transition: transform 0.3s ease;
+      position: absolute;
       background-position: top right;
       background-size: cover;
     }
@@ -317,7 +317,7 @@
     opacity: 0;
   }
 
-  80% {
+  50% {
     opacity: 0.2;
   }
 

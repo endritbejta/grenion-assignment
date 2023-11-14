@@ -107,30 +107,6 @@ prevSlide.addEventListener("click", () => {
 /////////////////////////////////////////////////////////////
 ////////////// products manager here
 
-// initialize the width of the active to be the width of the bestseller container
-productsLine.style.setProperty(
-  "--active-width",
-  bestSeller.offsetWidth / productsLine.offsetWidth
-);
-// lining up the active line with best seller container
-productsLine.style.setProperty("--translate-x", `-${bestSeller.offsetWidth}px`);
-
-// on click then we change the width to its desired value
-bestSeller.addEventListener("click", () => {
-  const width = bestSeller.offsetWidth / productsLine.offsetWidth;
-  productsLine.style.setProperty("--active-width", `${width}`);
-  productsLine.style.setProperty("--translate-x", `-${75}px`);
-});
-// on click then we change the width to its desired value
-lineOFTheMonth.addEventListener("click", () => {
-  const width = lineOFTheMonth.offsetWidth / productsLine.offsetWidth;
-  productsLine.style.setProperty("--active-width", `${width}`);
-  productsLine.style.setProperty("--translate-x", `${45}px`);
-});
-
-////////////////////////////////////////////////////////////////
-/////////////// products logic here
-
 const productsData = [
   {
     type: "1",
@@ -181,6 +157,63 @@ const productsData = [
     price: "324 $",
   },
 ];
+
+const lineOfMonthProducts = [
+  {
+    type: "2",
+    cover: "",
+    title: "",
+    price: "",
+  },
+  {
+    type: "1",
+    cover:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
+    image:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
+    title: "Mermaid squad geschenk set",
+    price: "324 $",
+  },
+  {
+    type: "2",
+    cover: "",
+    title: "",
+    price: "",
+  },
+  {
+    type: "1",
+    cover:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
+    image:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
+    title: "Mermaid squad geschenk set",
+    price: "324 $",
+  },
+  {
+    type: "2",
+    cover: "",
+    title: "",
+    price: "",
+  },
+  {
+    type: "1",
+    cover:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
+    image:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
+    title: "Mermaid squad geschenk set",
+    price: "324 $",
+  },
+  {
+    type: "1",
+    cover:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
+    image:
+      "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
+    title: "Mermaid squad geschenk set",
+    price: "324 $",
+  },
+];
 console.log(productsSlider);
 
 const productsCreator = (product, i) => {
@@ -199,9 +232,46 @@ const productsCreator = (product, i) => {
             </div>`;
 };
 
-productsData.forEach((product, i) => {
-  productsSlider.insertAdjacentHTML("beforeend", productsCreator(product, i));
+// initialize the width of the active to be the width of the bestseller container
+productsLine.style.setProperty(
+  "--active-width",
+  bestSeller.offsetWidth / productsLine.offsetWidth
+);
+// lining up the active line with best seller container
+productsLine.style.setProperty("--translate-x", `-${bestSeller.offsetWidth}px`);
+
+// function to replace the html
+const replaceHtml = (html) => {
+  productsSlider.innerHTML = html;
+};
+
+const bestSellerData = productsData.map((product, i) =>
+  productsCreator(product, i)
+);
+
+const lineOfMonthData = lineOfMonthProducts.map((product, i) =>
+  productsCreator(product, i)
+);
+
+productsSlider.innerHTML = lineOfMonthData.join("");
+console.log(productsSlider);
+// on click then we change the width to its desired value and we fill the products slider with data
+bestSeller.addEventListener("click", () => {
+  const width = bestSeller.offsetWidth / productsLine.offsetWidth;
+  productsLine.style.setProperty("--active-width", `${width}`);
+  productsLine.style.setProperty("--translate-x", `-${75}px`);
+  replaceHtml(bestSellerData.join(""));
+  document
+    .querySelectorAll(".products__image-holder")
+    .forEach((product) => (product.style.animationPlayState = "running"));
 });
+lineOFTheMonth.addEventListener("click", () => {
+  const width = lineOFTheMonth.offsetWidth / productsLine.offsetWidth;
+  productsLine.style.setProperty("--active-width", `${width}`);
+  productsLine.style.setProperty("--translate-x", `${45}px`);
+  replaceHtml(lineOfMonthData.join(""));
+});
+
 const options2 = {
   root: null,
   rootMargin: 400,
@@ -214,9 +284,10 @@ const productsObserver = new IntersectionObserver((entries) => {
       // Element is no longer intersecting with the viewport
       const products = document.querySelectorAll(".products__image-holder");
       console.log(products);
-      products.forEach(
-        (product) => (product.style.animationPlayState = "running")
-      );
+      products.forEach((product) => {
+        console.log(product);
+        product.style.animationPlayState = "running";
+      });
       // Perform actions or trigger events when the element is not in view
       productsObserver.unobserve(productsSlider);
     }
