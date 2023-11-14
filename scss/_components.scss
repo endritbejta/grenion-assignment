@@ -46,10 +46,12 @@
   cursor: grab;
   display: flex;
   &__photoholder {
+    width: 100%;
     min-width: 100vw;
     height: 100%;
     display: flex;
     padding: 100px 50px;
+    background-position: center center;
     align-items: last baseline;
     background-size: cover;
   }
@@ -104,18 +106,223 @@
 }
 
 .products {
-  height: 60vh;
+  height: 80vh;
   width: 100%;
   background-color: #ecf3f9;
   display: flex;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 70px;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   &__actions {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__type {
     font-size: 1.6rem;
     line-height: 1;
+    letter-spacing: 1px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .line {
+    display: block;
+    height: 5px;
+    background-color: rgb(201, 199, 199);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    --active-width: 80px;
+  }
+
+  .line::before {
+    content: "";
+    display: table;
+    background-color: rgb(252, 152, 169);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    transform: translateX(var(--translate-x)) scaleX(var(--active-width));
+  }
+
+  &__holder {
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__slider {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    padding: 10px 20px;
+    // buttons here
+    &-next,
+    &-prev {
+      z-index: 10;
+      position: absolute;
+      top: 25%;
+    }
+
+    &-prev {
+      left: 20px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &-next {
+      right: 20px;
+    }
+  }
+
+  &__product {
+    width: 250px;
+    min-width: 240px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    p {
+      margin-inline: 5px;
+      &:last-of-type {
+        margin-bottom: 10px;
+      }
+    }
+
+    &:hover {
+      .products__btn {
+        bottom: 10px;
+        right: 10px;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    transition: all 0.3s ease;
+    bottom: -20px;
+    right: -20px;
+    transform: scale(0);
+    font-size: 20px;
+    display: grid;
+    place-content: center;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    &::after {
+      content: "";
+      opacity: 0;
+      border-radius: 100%;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border: 2px solid rgb(21, 21, 21);
+    }
+
+    &:hover::after {
+      animation: none;
+      animation: pulsate 0.5s ease forwards;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__image-holder {
+    height: 80%;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    animation: comeIntoView 0.9s ease forwards;
+    animation-play-state: paused;
+    .cover,
+    .image {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+      transition: transform 0.3s ease;
+      background-position: top right;
+      background-size: cover;
+    }
+
+    .image {
+      z-index: 0;
+      transform: translateX(20%);
+    }
+
+    &:hover {
+      .cover {
+        transform: translateX(-100%);
+      }
+
+      .image {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__product-price {
+    font-size: 20px;
+  }
+}
+
+@keyframes span {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes comeIntoView {
+  0% {
+    transform: scale(3);
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

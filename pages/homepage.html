@@ -60,13 +60,23 @@
       <section class="products">
         <h1 class="heading-1">MERMAID FAVOURITES</h1>
         <div class="products__actions">
-          <div class="">
-            <p>Bestseller</p>
-            <p>Line of month</p>
+          <div class="products__type">
+            <p class="products__type products__type--best-seller">Bestseller</p>
+            <p class="products__type products__type--line-of-the-month">
+              Line of the month
+            </p>
           </div>
-          <span></span>
+          <span class="line"></span>
         </div>
-        <div class="products__shower"></div>
+        <div class="products__holder">
+          <button class="btn slider__btn products__slider-prev">
+            <img src="../assets/svg/chevron-left.svg" alt="left_arrow" />
+          </button>
+          <button class="btn slider__btn products__slider-next">
+            <img src="../assets/svg/chevron-right.svg" alt="right-arrow" />
+          </button>
+          <div class="products__slider"></div>
+        </div>
       </section>
     </div>
     <script defer src="../scripts/homepage.js"></script>
