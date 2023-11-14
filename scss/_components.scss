@@ -250,7 +250,6 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    animation: comeIntoView 0.9s ease;
     // animation-play-state: paused;
     .cover,
     .image {
@@ -259,13 +258,18 @@
       z-index: 1;
       transition: transform 0.3s ease;
       position: absolute;
-      background-position: top right;
+      background-position: center;
       background-size: cover;
+    }
+
+    .cover {
+      animation: comeIntoView 0.7s ease forwards;
     }
 
     .image {
       z-index: 0;
       transform: translateX(20%);
+      animation: initialHide 0.7s ease forwards;
     }
 
     &:hover {
@@ -288,7 +292,6 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 40px;
   padding-top: 50px;
   background-color: #ecf3f9;
 
@@ -310,6 +313,9 @@
       width: 100px;
       aspect-ratio: 1/1;
     }
+  }
+  &__rating {
+    font-size: 1.6rem;
   }
 }
 
@@ -341,16 +347,31 @@
 
 @keyframes comeIntoView {
   0% {
-    transform: scale(3);
-    opacity: 0;
+    background-size: 200%;
+    filter: blur(1px);
+    opacity: 0.5;
   }
 
   50% {
-    opacity: 0.2;
+    filter: blur(0);
   }
 
   100% {
-    transform: scale(1);
+    background-size: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes initialHide {
+  0% {
+    opacity: 0;
+  }
+
+  99% {
+    opacity: 0.1;
+  }
+
+  100% {
     opacity: 1;
   }
 }
