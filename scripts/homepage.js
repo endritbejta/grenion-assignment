@@ -37,7 +37,6 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) {
       // Element is no longer intersecting with the viewport
-      console.log("Element is not in view");
       header.style.transform = "translateY(-100%)";
       header.animate(
         {
@@ -77,6 +76,139 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(headerReferTo);
 
+/////////////////////////////////////////////////////////////
+//// shop click handler, shop shower and shop item generator
+const cart = document.querySelector(".header__route-item--cart");
+const cartItemsIndicator = document.querySelector(".cart-items");
+const shop = document.querySelector(".shop");
+const shopCenter = document.querySelector(".shop-center");
+const cartItemsLength = JSON.parse(localStorage.getItem("products"))?.length;
+const cartItemsHolder = document.querySelector(".shop-center__item-holder");
+const cartItems = JSON.parse(localStorage.getItem("products"));
+const priceElement = document.querySelector(".shop-center__total .amount");
+const shopCenterClose = document.querySelector(".shop-center__action-close");
+
+if (cartItemsLength) {
+  cartItemsIndicator.style.display = "grid";
+  cartItemsIndicator.innerHTML = cartItemsLength;
+} else {
+  cartItemsIndicator.innerHTML = 0;
+  cartItemsIndicator.style.display = "none";
+}
+
+const priceCalculator = () => {
+  const cartItems = JSON.parse(localStorage.getItem("products"));
+  const totalPrice = cartItems?.reduce((accumulator, currentItem) => {
+    const subtotal = currentItem.quantity * currentItem.price;
+
+    return accumulator + subtotal;
+  }, 0);
+
+  if (totalPrice) {
+    priceElement.innerHTML = totalPrice?.toFixed(2);
+  }
+  return totalPrice;
+};
+
+priceCalculator();
+
+const updateItem = () => {
+  cartItemsHolder.innerHTML = "";
+  JSON.parse(localStorage.getItem("products"))?.forEach((item) => {
+    let oneCartItem = itemGenerator(item);
+    cartItemsHolder.insertAdjacentHTML("beforeend", oneCartItem);
+  });
+};
+
+const itemGenerator = (item) => {
+  return `<div id="${item.id}" class="shop-center__item">
+              <div class="shop-center__item-image" style="background-image: url('${item.image}')"></div>
+              <div class="shop-center__item-content">
+                <h3 class="title">${item.title}</h3>
+                <p class="amout">$ <span>${item.price}</span></p>
+                <div class="actions">
+                  <div class="counter">
+                    <span class="minus">-</span>
+                    <span class="quantity">${item.quantity}</span>
+                    <span class="plus">+</span>
+                  </div>
+                  <p>Entfernen</p>
+                </div>
+              </div>
+            </div>`;
+};
+
+if (cartItems) {
+  cartItems.forEach((item) => {
+    console.log("endrtt");
+    let oneCartItem = itemGenerator(item);
+    cartItemsHolder.insertAdjacentHTML("beforeend", oneCartItem);
+  });
+}
+
+// shop center shower
+cart.addEventListener("click", () => {
+  console.log("endrit", shopCenter);
+
+  shop.style.opacity = "1";
+  shop.style.pointerEvents = "unset";
+  shopCenter.style.transform = "translateX(0)";
+});
+
+shopCenterClose.addEventListener("click", () => {
+  shop.style.opacity = "0";
+  shop.style.pointerEvents = "none";
+  shopCenter.style.transform = "translateX(100%)";
+});
+
+// shop item handlers
+const counters = document.querySelectorAll(".counter");
+const shopCenterItem = document.querySelector(".shop-center__item");
+
+const deleteItem = (id, clickedItem) => {
+  console.log("deleted");
+  const existingProducts = JSON.parse(localStorage.getItem("products"));
+  console.log(id);
+  const filteredProducts = existingProducts.filter(
+    (product) => product.id !== id
+  );
+  clickedItem.remove();
+  console.log(filteredProducts);
+  localStorage.setItem("products", JSON.stringify(filteredProducts));
+};
+
+const counterClickHandler = (event) => {
+  const clickedItem = event.target.closest(".shop-center__item");
+  const quantity = clickedItem.querySelector(".quantity");
+  const idOfAddedItem = clickedItem.id;
+  const existingProducts = JSON.parse(localStorage.getItem("products"));
+  const indexOfAddedItem = existingProducts.findIndex(
+    (product) => product.id === idOfAddedItem
+  );
+  if (event.target.classList.contains("plus")) {
+    existingProducts[indexOfAddedItem].quantity += 1;
+    quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
+  } else if (event.target.classList.contains("minus")) {
+    console.log("minus");
+    if (existingProducts[indexOfAddedItem].quantity > 1) {
+      existingProducts[indexOfAddedItem].quantity -= 1;
+      quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
+    } else if (existingProducts[indexOfAddedItem].quantity === 1) {
+      console.log("endrit");
+      deleteItem(idOfAddedItem, clickedItem);
+    } else return;
+  } else return;
+
+  localStorage.setItem("products", JSON.stringify(existingProducts));
+  priceCalculator();
+};
+
+counters.forEach((counter) => {
+  counter.addEventListener("click", counterClickHandler);
+});
+
+////////////////////////////////////////////////////////////////
+//// hamburger click handler
 const hamburger = document.querySelector(".header__route-item--hamburger");
 const mobileNavHolder = document.querySelector(".header__nav-holder");
 const mobileNav = document.querySelector(".header__mobileNav");
@@ -85,18 +217,18 @@ hamburger.addEventListener("click", () => {
   mobileNav.style.opacity = "1";
   mobileNav.style.pointerEvents = "unset";
   mobileNavHolder.style.transform = "translateX(0)";
+  document.body.classList.add("hidden");
 });
-console.log(xMark);
 xMark.addEventListener("click", () => {
   mobileNav.style.opacity = "0";
   mobileNav.style.pointerEvents = "none";
   mobileNavHolder.style.transform = "translateX(100%)";
+  document.body.classList.remove("hidden");
 });
 // /////////////////////////////////////////////////////////////////
 //  slider functions and slide handler
 
 const slideCreator = (slide, i) => {
-  console.log(slide);
   return `<div style='background-image: url(${slide.img})' class="slider__photoholder slider__${i}">
             <div class="slider__photo-content">
               <h3 class="heading-1">${slide.title}</h3>
@@ -112,7 +244,6 @@ mainSliderData.forEach((slide, i) => {
 
 let currentSlide = 0;
 function showSlide(index) {
-  console.log(index);
   if (index < 0) {
     currentSlide = mainSliderData.length - 1;
   } else if (index >= mainSliderData.length) {
@@ -165,108 +296,123 @@ sliderObserver.observe(slider);
 
 const productsData = [
   {
+    id: "1",
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Mermaid squad geschenk set",
-    price: "324 $",
+    price: "324.99",
   },
   {
+    id: "2",
+
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Hydration Starter Set",
-    price: "59 $",
+    price: "59.99",
   },
   {
+    id: "3",
+
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Repairing Routine Set",
-    price: "79 $",
+    price: "79.99",
   },
   {
+    id: "4",
+
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Hydration routine set",
-    price: "99.99 $",
+    price: "99.99",
   },
   {
+    id: "5",
+
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Volume Starter Set",
-    price: "59.99 $",
+    price: "59.99",
   },
   {
+    id: "6",
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Skincare geschenk set",
-    price: "126.99 $",
+    price: "126.99",
   },
 ];
 
 const lineOfMonthProducts = [
   {
+    id: "8",
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Mermaid squad geschenk set",
-    price: "324 $",
+    price: "64.21",
   },
   {
+    id: "9",
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Mermaid squad geschenk set",
-    price: "324 $",
+    price: "164.22",
   },
   {
+    id: "10",
+
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Mermaid squad geschenk set",
-    price: "324 $",
+    price: "174.22",
   },
   {
+    id: "11",
     type: "1",
     cover:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_900x.jpg?v=1668074116",
     image:
       "https://cas8sjpcu0gqt4c8-61494100134.shopifypreview.com/cdn/shop/products/mm-claymask_specialbox-carrousel-1_900x.jpg?v=1668074116",
     title: "Mermaid squad geschenk set",
-    price: "324 $",
+    price: "124.22",
   },
 ];
 
-console.log(productsSlider);
+const allProducts = [...productsData, ...lineOfMonthProducts];
 
-const productsCreator = (product, i) => {
-  return `<div class="products__product">
-              <div class="products__image-holder">
+const productsCreator = (product) => {
+  return `<div id="${product.id}"           class="products__product">
+              <div  class="products__image-holder">
                 <div style="background-image: url('${product.cover}')" class="cover"></div>
                 <div style="background-image: url('${product.image}')" class="image"></div>
-                <button class="btn products__btn">
+                <button  class="btn products__btn">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 </button>
               </div>
@@ -291,15 +437,58 @@ const replaceHtml = (html) => {
 };
 
 const bestSellerData = productsData.map((product, i) =>
-  productsCreator(product, i)
+  productsCreator(product, "bestseller", i)
 );
 
 const lineOfMonthData = lineOfMonthProducts.map((product, i) =>
-  productsCreator(product, i)
+  productsCreator(product, "lineofmonth", i)
 );
 
-productsSlider.innerHTML = lineOfMonthData.join("");
-console.log(productsSlider);
+// we initialize the data to be the best seller data
+productsSlider.innerHTML = bestSellerData.join("");
+
+// here we handle the click on the ADD product button on each product
+const handleProductsSliderClick = (e) => {
+  if (e.target.closest(".products__btn")) {
+    const idOfProductClicked = e.target.closest(".products__product").id;
+    if (idOfProductClicked) {
+      const existingProducts =
+        JSON.parse(localStorage.getItem("products")) || [];
+      // we chech if the clicked item is already in our session storage
+      const indexOfExistingProduct = existingProducts.findIndex(
+        (exsitingProduct) => exsitingProduct.id === idOfProductClicked
+      );
+      if (existingProducts.length > 0 && indexOfExistingProduct !== -1) {
+        existingProducts[indexOfExistingProduct].quantity += 1;
+        // updating the quantity if we click two times
+        cartItemsHolder.innerHTML = "";
+        updateItem();
+      } else {
+        const newProduct = allProducts.find(
+          (product) => product.id === idOfProductClicked
+        );
+        newProduct.quantity = 1;
+        // Add the new product to the array
+        if (newProduct) {
+          existingProducts.push(newProduct);
+          // change the inner html of cart counter accordingly
+          cartItemsIndicator.innerHTML = existingProducts.length;
+          cartItemsIndicator.style.display = "grid";
+          // regenerating the items inside of the cartItemHolder
+        }
+      }
+      // Save the updated array back to local storage
+      localStorage.setItem("products", JSON.stringify(existingProducts));
+      updateItem();
+    }
+  } else {
+    return;
+  }
+};
+
+// adding only one click listerner
+productsSlider.addEventListener("click", handleProductsSliderClick);
+
 // on click then we change the width to its desired value and we fill the products slider with data
 bestSeller.addEventListener("click", () => {
   const width = bestSeller.offsetWidth / productsLine.offsetWidth;
@@ -321,6 +510,7 @@ lineOFTheMonth.addEventListener("click", () => {
   });
 });
 
+// observer for the comeintoview effect of products
 const options2 = {
   root: null,
   rootMargin: 400,
@@ -332,9 +522,7 @@ const productsObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       // Element is no longer intersecting with the viewport
       const products = document.querySelectorAll(".products__image-holder");
-      console.log(products);
       products.forEach((product) => {
-        console.log(product);
         product.style.animationPlayState = "running";
       });
       // Perform actions or trigger events when the element is not in view
@@ -349,10 +537,6 @@ productsObserver.observe(productsSlider);
 ///// slider buttons handlers
 const productsButtonNext = document.querySelector(".products__slider-next");
 const productsButtonPrev = document.querySelector(".products__slider-prev");
-
-productsButtonPrev.addEventListener("click", () => {
-  console.log("clicked");
-});
 
 productsButtonNext.addEventListener("click", () => {
   productsSlider.animate(
@@ -448,12 +632,8 @@ testimonialsButtons.forEach((button) =>
       newScrollLeft = testimonialsHolder.scrollLeft - testimonialWidth;
     }
 
-    console.log(newScrollLeft);
-
     testimonialsHolder.scrollLeft +=
       button.id === "next" ? testimonialWidth : -testimonialWidth;
-    console.log("scroll: ", newScrollLeft);
-    console.log("width: ", testimonialsHolder.offsetWidth);
     if (newScrollLeft === 0 || newScrollLeft < 0) {
       prevButton.style.opacity = 0;
       prevButton.style.pointerEvents = "none";
@@ -465,9 +645,7 @@ testimonialsButtons.forEach((button) =>
       prevButton.style.pointerEvents = "unset";
       nextButton.style.pointerEvents = "unset";
     }
-    console.log(newScrollLeft, testimonialsHolder.offsetWidth);
     if (newScrollLeft > testimonialsHolder.offsetWidth - 200) {
-      console.log("true");
       nextButton.style.opacity = 0;
       nextButton.style.pointerEvents = "none";
     }
@@ -493,7 +671,6 @@ const dragging = (e) => {
   }
 
   if (newScrollLeft >= testimonialsHolder.offsetWidth) {
-    console.log("true");
     nextButton.style.opacity = 0;
     nextButton.style.pointerEvents = "none";
   }
@@ -507,7 +684,6 @@ const mousedown = (e) => {
 };
 
 const mouseup = () => {
-  console.log("firing");
   testimonialsHolder.classList.remove("dragging");
   testimonialsHolder.style.cursor = "grab";
 
