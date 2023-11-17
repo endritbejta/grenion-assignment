@@ -87,6 +87,7 @@
     background-color: white;
     border: none;
     transition: scale 0.2s ease;
+    box-shadow: $shadow-1;
 
     &:hover {
       transition: scale 0.2s ease;
@@ -96,8 +97,10 @@
       position: absolute;
       bottom: 10px;
       left: 50%;
+      box-shadow: none;
       background-color: transparent;
       transform: translateX(-50%);
+
       &:hover {
         scale: 1;
       }
@@ -222,6 +225,19 @@
     width: 40px;
     border: none;
     background-color: white;
+
+    &:hover {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+
+    svg {
+      transition: transform 0.3s ease;
+      height: 20px;
+      width: 20px;
+      color: #34394d;
+    }
     &::after {
       content: "";
       opacity: 0;
@@ -263,6 +279,7 @@
     }
 
     .cover {
+      opacity: 0;
       animation: comeIntoView 0.7s ease forwards;
     }
 
@@ -319,6 +336,158 @@
   }
 }
 
+.testimonials {
+  width: 100%;
+  position: relative;
+
+  &-actions__btn {
+    top: 50%;
+    position: absolute;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    display: grid;
+    place-content: center;
+    background-color: #ecf3f9;
+    box-shadow: $shadow-1;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    &--prev {
+      left: 30px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    &--next {
+      right: 30px;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &__holder {
+    width: 100vw;
+    padding: 20px;
+    overflow-x: scroll;
+    cursor: grab;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    scroll-behavior: smooth;
+    transition: scroll 0.2s ease;
+    gap: 20px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  // removing the scroll behaviour of smoth because it makes the slider lag when we drag
+  .dragging {
+    scroll-behavior: auto;
+    user-select: none;
+  }
+
+  .testimonial {
+    height: 54vh;
+    padding: 20px;
+    width: 200px;
+    min-width: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    color: $color-primary;
+    text-align: left;
+    &--first {
+      background-color: navy;
+      color: white;
+    }
+
+    &:last-of-type {
+      margin-right: 20px;
+    }
+
+    &__starholder {
+      display: flex;
+      color: pink;
+      padding: 10px;
+      svg {
+        width: 25px;
+        aspect-ratio: 1/1;
+        fill: pink;
+      }
+    }
+
+    &__text {
+      &--description {
+        font-size: 1.6rem;
+      }
+
+      &--author {
+        font-size: 1.4rem;
+      }
+
+      &--set {
+        color: lighten(#34394d, 1);
+      }
+    }
+  }
+}
+
+.mission {
+  width: 100%;
+  height: 80vh;
+  padding: 50px 150px;
+  font-size: 1.6rem;
+  &__image {
+    height: 100%;
+    width: 100%;
+    background: url("https://www.mermaidme.de/cdn/shop/files/MM-ExpertSets-HomepageBanner-DesktopA_1512x.jpg?v=1667204557")
+      center center;
+    background-size: cover;
+    position: relative;
+    transform: translate(60px, 0);
+  }
+
+  &__text {
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    top: 10%;
+    left: -100px;
+    background: white;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 1018px) {
+  .mission {
+    padding: 10px;
+    margin-bottom: 80px;
+    &__image {
+      transform: translateX(0);
+    }
+
+    &__text {
+      height: auto;
+      width: 95%;
+      top: 60%;
+      left: 2.5%;
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
+}
+
 @keyframes span {
   0% {
     width: 0%;
@@ -354,6 +523,7 @@
 
   50% {
     filter: blur(0);
+    opacity: 1;
   }
 
   100% {
@@ -368,7 +538,7 @@
   }
 
   99% {
-    opacity: 0.1;
+    opacity: 0;
   }
 
   100% {

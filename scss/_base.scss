@@ -4,7 +4,8 @@ $color-primary-dark: black;
 $color-secondary: red;
 
 $font-primary: sans-serif;
-
+$shadow-1: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+  rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 *,
 ::before,
 ::after {
@@ -15,6 +16,7 @@ $font-primary: sans-serif;
 
 html {
   font-size: 62.5%; // default size is 16px with this we make it so 1 rem is equal to 10px
+  scroll-behavior: smooth;
 }
 
 body {
@@ -29,4 +31,51 @@ a:active,
 a:visited {
   text-decoration: none;
   color: inherit;
+}
+
+.button-type1 {
+  // width: 150px;
+  font: inherit;
+  display: grid;
+  place-content: center;
+  align-self: self-start;
+  font-size: 2rem;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.1s linear;
+  border: 2px solid pink;
+  background-color: pink;
+  color: black;
+  &:hover {
+    border: 2px solid black;
+  }
+  &::after {
+    background-color: white;
+    content: "";
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: top;
+  }
+
+  &:hover::after {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  span {
+    position: relative;
+    z-index: 3;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
 }
