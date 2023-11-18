@@ -132,7 +132,7 @@ const itemGenerator = (item) => {
                     <span class="quantity">${item.quantity}</span>
                     <span class="plus">+</span>
                   </div>
-                  <p>Entfernen</p>
+                  <p class="remove">Entfernen</p>
                 </div>
               </div>
             </div>`;
@@ -153,12 +153,14 @@ cart.addEventListener("click", () => {
   shop.style.opacity = "1";
   shop.style.pointerEvents = "unset";
   shopCenter.style.transform = "translateX(0)";
+  document.body.classList.remove("hidden");
 });
 
 shopCenterClose.addEventListener("click", () => {
   shop.style.opacity = "0";
   shop.style.pointerEvents = "none";
   shopCenter.style.transform = "translateX(100%)";
+  document.body.classList.remove("hidden");
 });
 
 // shop item handlers
@@ -178,7 +180,8 @@ const deleteItem = (id, clickedItem) => {
   cartItemsIndicator.innerHTML = existingProducts.length;
 };
 
-const counterClickHandler = (event) => {
+const shopItemClickHandler = (event) => {
+  console.log(event.target);
   if (event.target.closest(".counter")) {
     // Ensure existingProducts is an array
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
@@ -209,12 +212,18 @@ const counterClickHandler = (event) => {
     }
 
     priceCalculator();
+  } else if (event.target.closest(".remove")) {
+    console.log("clicked");
+    const clickedItem = event.target.closest(".shop-center__item");
+    const idOfAddedItem = clickedItem.id;
+
+    deleteItem(idOfAddedItem, clickedItem);
   } else {
     return;
   }
 };
 
-shopCenter.addEventListener("click", counterClickHandler);
+shopCenter.addEventListener("click", shopItemClickHandler);
 
 ////////////////////////////////////////////////////////////////
 //// hamburger click handler
