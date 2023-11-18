@@ -104,7 +104,7 @@ const priceCalculator = () => {
     return accumulator + subtotal;
   }, 0);
 
-  if (totalPrice) {
+  if (totalPrice >= 0) {
     priceElement.innerHTML = totalPrice?.toFixed(2);
   }
   return totalPrice;
@@ -167,45 +167,54 @@ const shopCenterItem = document.querySelector(".shop-center__item");
 
 const deleteItem = (id, clickedItem) => {
   console.log("deleted");
-  const existingProducts = JSON.parse(localStorage.getItem("products"));
-  console.log(id);
-  const filteredProducts = existingProducts.filter(
-    (product) => product.id !== id
-  );
+  let existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+  // Use filter to create a new array without the item to be deleted
+  existingProducts = existingProducts.filter((product) => product.id !== id);
+
+  localStorage.setItem("products", JSON.stringify(existingProducts));
   clickedItem.remove();
-  console.log(filteredProducts);
-  localStorage.setItem("products", JSON.stringify(filteredProducts));
+  priceCalculator();
+  cartItemsIndicator.innerHTML = existingProducts.length;
 };
 
 const counterClickHandler = (event) => {
-  const clickedItem = event.target.closest(".shop-center__item");
-  const quantity = clickedItem.querySelector(".quantity");
-  const idOfAddedItem = clickedItem.id;
-  const existingProducts = JSON.parse(localStorage.getItem("products"));
-  const indexOfAddedItem = existingProducts.findIndex(
-    (product) => product.id === idOfAddedItem
-  );
-  if (event.target.classList.contains("plus")) {
-    existingProducts[indexOfAddedItem].quantity += 1;
-    quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
-  } else if (event.target.classList.contains("minus")) {
-    console.log("minus");
-    if (existingProducts[indexOfAddedItem].quantity > 1) {
-      existingProducts[indexOfAddedItem].quantity -= 1;
-      quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
-    } else if (existingProducts[indexOfAddedItem].quantity === 1) {
-      console.log("endrit");
-      deleteItem(idOfAddedItem, clickedItem);
-    } else return;
-  } else return;
+  if (event.target.closest(".counter")) {
+    // Ensure existingProducts is an array
+    const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
 
-  localStorage.setItem("products", JSON.stringify(existingProducts));
-  priceCalculator();
+    const clickedItem = event.target.closest(".shop-center__item");
+    const quantity = clickedItem.querySelector(".quantity");
+    const idOfAddedItem = clickedItem.id;
+    const indexOfAddedItem = existingProducts.findIndex(
+      (product) => product.id === idOfAddedItem
+    );
+
+    if (event.target.classList.contains("plus")) {
+      // Ensure quantity is a number before incrementing
+      existingProducts[indexOfAddedItem].quantity =
+        parseInt(existingProducts[indexOfAddedItem].quantity) + 1;
+      quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
+      localStorage.setItem("products", JSON.stringify(existingProducts));
+    } else if (event.target.classList.contains("minus")) {
+      if (existingProducts[indexOfAddedItem].quantity > 1) {
+        // Ensure quantity is a number before decrementing
+        existingProducts[indexOfAddedItem].quantity =
+          parseInt(existingProducts[indexOfAddedItem].quantity) - 1;
+        quantity.innerHTML = existingProducts[indexOfAddedItem].quantity;
+        localStorage.setItem("products", JSON.stringify(existingProducts));
+      } else if (existingProducts[indexOfAddedItem].quantity === 1) {
+        deleteItem(idOfAddedItem, clickedItem);
+      }
+    }
+
+    priceCalculator();
+  } else {
+    return;
+  }
 };
 
-counters.forEach((counter) => {
-  counter.addEventListener("click", counterClickHandler);
-});
+shopCenter.addEventListener("click", counterClickHandler);
 
 ////////////////////////////////////////////////////////////////
 //// hamburger click handler
@@ -458,16 +467,18 @@ const handleProductsSliderClick = (e) => {
       const indexOfExistingProduct = existingProducts.findIndex(
         (exsitingProduct) => exsitingProduct.id === idOfProductClicked
       );
-      if (existingProducts.length > 0 && indexOfExistingProduct !== -1) {
+      if (indexOfExistingProduct !== -1) {
         existingProducts[indexOfExistingProduct].quantity += 1;
         // updating the quantity if we click two times
         cartItemsHolder.innerHTML = "";
         updateItem();
+        priceCalculator();
       } else {
         const newProduct = allProducts.find(
           (product) => product.id === idOfProductClicked
         );
         newProduct.quantity = 1;
+
         // Add the new product to the array
         if (newProduct) {
           existingProducts.push(newProduct);
@@ -479,6 +490,7 @@ const handleProductsSliderClick = (e) => {
       }
       // Save the updated array back to local storage
       localStorage.setItem("products", JSON.stringify(existingProducts));
+      priceCalculator();
       updateItem();
     }
   } else {

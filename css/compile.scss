@@ -424,21 +424,19 @@ a:visited {
 }
 .products__holder {
   width: 100vw;
+  overflow-x: scroll;
   position: relative;
 }
 .products__slider {
+  width: 120vw;
   display: flex;
   height: 100%;
   padding: 10px 20px;
-  overflow-x: auto;
-}
-.products__slider::-webkit-scrollbar {
-  display: none;
 }
 .products__slider-next, .products__slider-prev {
-  z-index: 100;
+  z-index: 10;
   position: absolute;
-  top: 30%;
+  top: 25%;
 }
 .products__slider-prev {
   left: 150px;
@@ -1000,4 +998,4 @@ a:visited {
   font-weight: 600;
 }
 
-/*# sourceMappingURL=compile.css.map */
+/*# sourceMappingURL=compile.scss.map */
