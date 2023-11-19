@@ -233,7 +233,7 @@ let sorted = [...products];
 
 const filterProducts = (benefitsToCheck) => {
   sorted = sorted.filter((product) => {
-    return benefitsToCheck.every((benefit) =>
+    return benefitsToCheck.some((benefit) =>
       product.benefits.includes(benefit)
     );
   });
@@ -243,7 +243,7 @@ const sortProducts = (type) => {
   switch (type) {
     case "a-to-z":
       sorted = products.sort((a, b) => {
-        const titleA = a.title.toUpperCase(); // Convert titles to uppercase for case-insensitive sorting
+        const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
 
         if (titleA < titleB) {
@@ -257,7 +257,7 @@ const sortProducts = (type) => {
       break;
     case "z-to-a":
       sorted = products.sort((a, b) => {
-        const titleA = a.title.toUpperCase(); // Convert titles to uppercase for case-insensitive sorting
+        const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
 
         if (titleA > titleB) {
@@ -341,6 +341,16 @@ allInputs.forEach((input) => {
           );
         }
         break;
+      case "intensive-repair":
+        console.log(input.checked);
+        if (input.checked) {
+          benefitsSelected.push("intensive-repair");
+        } else {
+          benefitsSelected = benefitsSelected.filter(
+            (benefit) => benefit !== "intensive-repair"
+          );
+        }
+        break;
       default:
     }
 
@@ -368,16 +378,11 @@ const verticalLineToMakePlusSign =
 const liElements = sortByFilterContainerOptions.querySelectorAll("li");
 let totalHeight = 0;
 liElements.forEach((li) => {
-  totalHeight += li.clientHeight; // You can use clientHeight or offsetHeight based on your needs
+  totalHeight += li.clientHeight;
 });
 sortByFilterContainer.addEventListener("click", (e) => {
   console.log(sortByFilterContainerOptions.clientHeight);
   if (sortByFilterContainerOptions.clientHeight === 0) {
-    // console.log("in");
-    // const sortByFilterContainerOptionsStyles = getComputedStyle(
-    //   sortByFilterContainerOptions
-    // );
-    // console.log(sortByFilterContainerOptionsStyles.rowGap);
     sortByFilterContainerOptions.style.height = `${totalHeight + 30}px`;
     sortByFilterContainerOptions.animate(
       {
@@ -419,7 +424,7 @@ const benefitsOptionsListItems =
 
 let totalBenefitsListHeight = 0;
 benefitsOptionsListItems.forEach((li) => {
-  totalBenefitsListHeight += li.clientHeight; // You can use clientHeight or offsetHeight based on your needs
+  totalBenefitsListHeight += li.clientHeight;
 });
 benefitsFilterItem.addEventListener("click", (e) => {
   console.log("firing");
@@ -459,6 +464,6 @@ benefitsFilterItem.addEventListener("click", (e) => {
       );
     }
     console.log(totalBenefitsListHeight);
-    verticalLineToMakePlusSign.classList.toggle("appear");
+    benefitsVerticalSign.classList.toggle("appear");
   }
 });
