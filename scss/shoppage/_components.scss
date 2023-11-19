@@ -3,6 +3,31 @@
   display: flex;
   flex-direction: column;
 
+  &__chip-holder {
+    display: flex;
+    padding: 5px;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 5px;
+    .chip {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      background-color: gray;
+      color: white;
+      .deleteChip {
+        width: 20px;
+        height: 20px;
+        color: white;
+        fill: white;
+        cursor: pointer;
+      }
+    }
+  }
+
   &__holder {
     position: sticky;
     top: 0;

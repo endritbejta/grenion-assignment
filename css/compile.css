@@ -903,6 +903,30 @@ a:visited {
   display: flex;
   flex-direction: column;
 }
+.filter__chip-holder {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.filter__chip-holder .chip {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  background-color: gray;
+  color: white;
+}
+.filter__chip-holder .chip .deleteChip {
+  width: 20px;
+  height: 20px;
+  color: white;
+  fill: white;
+  cursor: pointer;
+}
 .filter__holder {
   position: sticky;
   top: 0;

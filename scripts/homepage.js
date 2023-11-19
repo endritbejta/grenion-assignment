@@ -1,5 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 /////////// selectors
+console.log("rruning homepage");
 const header = document.querySelector(".header");
 const headerReferTo = document.querySelector(".referTo");
 const slider = document.querySelector(".slider");
@@ -257,7 +258,7 @@ const slideCreator = (slide, i) => {
 
 mainSliderData.forEach((slide, i) => {
   let photoSlider = slideCreator(slide, i);
-  slider.insertAdjacentHTML("beforeend", photoSlider);
+  slider?.insertAdjacentHTML("beforeend", photoSlider);
 });
 
 let currentSlide = 0;
@@ -278,12 +279,12 @@ function showSlide(index) {
   );
 }
 
-nextSlide.addEventListener("click", () => {
+nextSlide?.addEventListener("click", () => {
   currentSlide += 1;
   showSlide(currentSlide);
 });
 
-prevSlide.addEventListener("click", () => {
+prevSlide?.addEventListener("click", () => {
   currentSlide -= 1;
   showSlide(currentSlide);
 });
@@ -306,8 +307,9 @@ const sliderObserver = new IntersectionObserver((entries) => {
     }
   });
 }, options3);
-
-sliderObserver.observe(slider);
+if (slider) {
+  sliderObserver.observe(slider);
+}
 
 /////////////////////////////////////////////////////////////
 ////////////// products manager here
@@ -423,7 +425,210 @@ const lineOfMonthProducts = [
   },
 ];
 
-const allProducts = [...productsData, ...lineOfMonthProducts];
+const allProducts = [
+  ...productsData,
+  ...lineOfMonthProducts,
+  {
+    id: "12",
+    cover: "path/to/cover-image-0.jpg",
+    image: "path/to/product-image-0.jpg",
+    date: "2023-11-15",
+    price: "43.21",
+    sold: 8,
+    title: "Hydration Set",
+    benefits: ["shine", "volume", "humidity", "intensive-repair"],
+  },
+  {
+    id: "13",
+    cover: "path/to/cover-image-1.jpg",
+    image: "path/to/product-image-1.jpg",
+    date: "2023-11-15",
+    price: "29.99",
+    sold: 5,
+    title: "Eyelash set",
+    benefits: ["shine", "humidity"],
+  },
+  {
+    id: "14",
+    cover: "path/to/cover-image-2.jpg",
+    image: "path/to/product-image-2.jpg",
+    date: "2023-11-15",
+    price: "41.25",
+    sold: 10,
+    benefits: ["intensive-repair"],
+    title: "Hair set",
+  },
+  {
+    id: "15",
+    cover: "path/to/cover-image-3.jpg",
+    image: "path/to/product-image-3.jpg",
+    date: "2023-11-15",
+    price: "35.50",
+    sold: 15,
+    title: "Well care set",
+    benefits: ["shine"],
+  },
+  {
+    id: "16",
+    cover: "path/to/cover-image-4.jpg",
+    image: "path/to/product-image-4.jpg",
+    date: "2023-11-15",
+    price: "50.00",
+    sold: 3,
+    title: "Moustorizing",
+    benefits: ["intensive-repair"],
+  },
+  {
+    id: "17",
+    cover: "path/to/cover-image-5.jpg",
+    image: "path/to/product-image-5.jpg",
+    date: "2023-11-15",
+    price: "27.80",
+    sold: 7,
+    title: "Nourishing set",
+    benefits: ["volume"],
+  },
+  {
+    id: "18",
+    cover: "path/to/cover-image-6.jpg",
+    image: "path/to/product-image-6.jpg",
+    date: "2023-11-15",
+    price: "39.99",
+    sold: 12,
+    title: "Morning set",
+    benefits: ["shine", "intensive-repair"],
+  },
+  {
+    id: "19",
+    cover: "path/to/cover-image-7.jpg",
+    image: "path/to/product-image-7.jpg",
+    date: "2023-11-15",
+    price: "22.49",
+    sold: 6,
+    title: "Night Set",
+    benefits: ["shine", "humidity"],
+  },
+  {
+    id: "20",
+    cover: "path/to/cover-image-8.jpg",
+    image: "path/to/product-image-8.jpg",
+    date: "2023-11-15",
+    price: "45.30",
+    sold: 9,
+    title: "Always ready",
+    benefits: ["humidity"],
+  },
+  {
+    id: "21",
+    cover: "path/to/cover-image-9.jpg",
+    image: "path/to/product-image-9.jpg",
+    date: "2023-11-15",
+    price: "54.75",
+    sold: 12,
+    title: "Never ever rest",
+    benefits: ["intensive-repair"],
+  },
+  {
+    id: "22",
+    cover: "path/to/cover-image-10.jpg",
+    image: "path/to/product-image-10.jpg",
+    date: "2023-11-15",
+    price: "34.50",
+    sold: 18,
+    title: "Bali man",
+    benefits: ["shine"],
+  },
+  {
+    id: "23",
+    cover: "path/to/cover-image-11.jpg",
+    image: "path/to/product-image-11.jpg",
+    date: "2023-11-15",
+    price: "28.75",
+    sold: 11,
+    title: "Senet e bajramit",
+    benefits: ["volume"],
+  },
+  {
+    id: "24",
+    cover: "path/to/cover-image-12.jpg",
+    image: "path/to/product-image-12.jpg",
+    date: "2023-11-15",
+    price: "42.99",
+    sold: 9,
+    title: "Flija, pite sene",
+    benefits: ["humidity"],
+  },
+  {
+    id: "25",
+    cover: "path/to/cover-image-13.jpg",
+    image: "path/to/product-image-13.jpg",
+    date: "2023-11-15",
+    price: "31.25",
+    sold: 14,
+    title: "Ta kona, ta kona",
+    benefits: ["intensive-repair"],
+  },
+  {
+    id: "26",
+    cover: "path/to/cover-image-14.jpg",
+    image: "path/to/product-image-14.jpg",
+    date: "2023-11-15",
+    price: "48.90",
+    sold: 5,
+    title: "Para konviktit numer 5",
+    benefits: ["volume"],
+  },
+  {
+    id: "27",
+    cover: "path/to/cover-image-15.jpg",
+    image: "path/to/product-image-15.jpg",
+    date: "2023-11-15",
+    price: "25.75",
+    sold: 16,
+    title: "Le mos u merr",
+    benefits: ["intensive-repair"],
+  },
+  {
+    id: "28",
+    cover: "path/to/cover-image-16.jpg",
+    image: "path/to/product-image-16.jpg",
+    date: "2023-11-15",
+    price: "37.80",
+    sold: 8,
+    title: "Facemask",
+    benefits: ["humidity"],
+  },
+  {
+    id: "29",
+    cover: "path/to/cover-image-17.jpg",
+    image: "path/to/product-image-17.jpg",
+    date: "2023-11-15",
+    price: "23.45",
+    sold: 13,
+    title: "HandCare set",
+    benefits: ["shine", "intensive-repair"],
+  },
+  {
+    id: "30",
+    cover: "path/to/cover-image-18.jpg",
+    image: "path/to/product-image-18.jpg",
+    date: "2023-11-15",
+    price: "40.20",
+    sold: 10,
+    title: "Eyelashes set",
+    benefits: ["humidity", "intensive-repair"],
+  },
+  {
+    id: "31",
+    cover: "path/to/cover-image-19.jpg",
+    image: "path/to/product-image-19.jpg",
+    date: "2023-11-15",
+    price: "29.99",
+    sold: 15,
+    title: "Eyebrows set",
+    benefits: ["shine", "volume"],
+  },
+];
 
 const productsCreator = (product) => {
   return `<div id="${product.id}" class="products__product">
@@ -442,12 +647,15 @@ const productsCreator = (product) => {
 };
 
 // initialize the width of the active to be the width of the bestseller container
-productsLine.style.setProperty(
+productsLine?.style.setProperty(
   "--active-width",
-  bestSeller.offsetWidth / productsLine.offsetWidth
+  bestSeller.offsetWidth / productsLine?.offsetWidth
 );
 // lining up the active line with best seller container
-productsLine.style.setProperty("--translate-x", `-${bestSeller.offsetWidth}px`);
+productsLine?.style.setProperty(
+  "--translate-x",
+  `-${bestSeller.offsetWidth}px`
+);
 
 // function to replace the html
 const replaceHtml = (html) => {
@@ -463,12 +671,15 @@ const lineOfMonthData = lineOfMonthProducts.map((product, i) =>
 );
 
 // we initialize the data to be the best seller data
-productsSlider.innerHTML = bestSellerData.join("");
+if (productsSlider) {
+  productsSlider.innerHTML = bestSellerData.join("");
+}
 
 // here we handle the click on the ADD product button on each product
 const handleProductsSliderClick = (e) => {
   if (e.target.closest(".products__btn")) {
     const idOfProductClicked = e.target.closest(".products__product").id;
+    console.log("id: ", idOfProductClicked);
     if (idOfProductClicked) {
       const existingProducts =
         JSON.parse(localStorage.getItem("products")) || [];
@@ -483,6 +694,7 @@ const handleProductsSliderClick = (e) => {
         updateItem();
         priceCalculator();
       } else {
+        console.log(idOfProductClicked);
         const newProduct = allProducts.find(
           (product) => product.id === idOfProductClicked
         );
@@ -508,10 +720,13 @@ const handleProductsSliderClick = (e) => {
 };
 
 // adding only one click listerner
-productsSlider.addEventListener("click", handleProductsSliderClick);
+productsSlider?.addEventListener("click", handleProductsSliderClick);
+document
+  .querySelector(".shop-products")
+  ?.addEventListener("click", handleProductsSliderClick);
 
 // on click then we change the width to its desired value and we fill the products slider with data
-bestSeller.addEventListener("click", () => {
+bestSeller?.addEventListener("click", () => {
   const width = bestSeller.offsetWidth / productsLine.offsetWidth;
   productsLine.style.setProperty("--active-width", `${width}`);
   productsLine.style.setProperty("--translate-x", `-${75}px`);
@@ -520,7 +735,7 @@ bestSeller.addEventListener("click", () => {
     .querySelectorAll(".cover")
     .forEach((cover, i) => (cover.style.animationDelay = `${i / 7}s`));
 });
-lineOFTheMonth.addEventListener("click", () => {
+lineOFTheMonth?.addEventListener("click", () => {
   const width = lineOFTheMonth.offsetWidth / productsLine.offsetWidth;
   productsLine.style.setProperty("--active-width", `${width}`);
   productsLine.style.setProperty("--translate-x", `${45}px`);
@@ -552,14 +767,16 @@ const productsObserver = new IntersectionObserver((entries) => {
   });
 }, options);
 
-productsObserver.observe(productsSlider);
+if (productsSlider) {
+  productsObserver.observe(productsSlider);
+}
 
 //////////////////////////////////////////////////////////////////////////
 ///// slider buttons handlers
 const productsButtonNext = document.querySelector(".products__slider-next");
 const productsButtonPrev = document.querySelector(".products__slider-prev");
 
-productsButtonNext.addEventListener("click", () => {
+productsButtonNext?.addEventListener("click", () => {
   productsSlider.animate(
     {
       transform: "translateX(-50%)",
@@ -594,7 +811,7 @@ productsButtonNext.addEventListener("click", () => {
   );
 });
 
-productsButtonPrev.addEventListener("click", () => {
+productsButtonPrev?.addEventListener("click", () => {
   productsSlider.animate(
     {
       transform: "translateX(0%)",
@@ -640,7 +857,7 @@ const nextButton = document.querySelector(".testimonials-actions__btn--next");
 const prevButton = document.querySelector(".testimonials-actions__btn--prev");
 
 const testimonial = document.querySelector(".testimonial");
-const testimonialWidth = (testimonial.offsetWidth + 20) * 3; // this makes so we scroll 3 testimonials with one click and 20px for the gap
+const testimonialWidth = (testimonial?.offsetWidth + 20) * 3; // this makes so we scroll 3 testimonials with one click and 20px for the gap
 testimonialsButtons.forEach((button) =>
   button.addEventListener("click", () => {
     let newScrollLeft;
@@ -711,5 +928,5 @@ const mouseup = () => {
   testimonialsHolder.removeEventListener("mousemove", dragging);
 };
 
-testimonialsHolder.addEventListener("mousedown", mousedown);
-testimonialsHolder.addEventListener("mouseup", mouseup);
+testimonialsHolder?.addEventListener("mousedown", mousedown);
+testimonialsHolder?.addEventListener("mouseup", mouseup);

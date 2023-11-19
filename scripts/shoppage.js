@@ -1,6 +1,6 @@
 const products = [
   {
-    id: 12,
+    id: "12",
     cover: "path/to/cover-image-0.jpg",
     image: "path/to/product-image-0.jpg",
     date: "2023-11-15",
@@ -10,7 +10,7 @@ const products = [
     benefits: ["shine", "volume", "humidity", "intensive-repair"],
   },
   {
-    id: 13,
+    id: "13",
     cover: "path/to/cover-image-1.jpg",
     image: "path/to/product-image-1.jpg",
     date: "2023-11-15",
@@ -20,7 +20,7 @@ const products = [
     benefits: ["shine", "humidity"],
   },
   {
-    id: 14,
+    id: "14",
     cover: "path/to/cover-image-2.jpg",
     image: "path/to/product-image-2.jpg",
     date: "2023-11-15",
@@ -30,7 +30,7 @@ const products = [
     title: "Hair set",
   },
   {
-    id: 15,
+    id: "15",
     cover: "path/to/cover-image-3.jpg",
     image: "path/to/product-image-3.jpg",
     date: "2023-11-15",
@@ -40,7 +40,7 @@ const products = [
     benefits: ["shine"],
   },
   {
-    id: 16,
+    id: "16",
     cover: "path/to/cover-image-4.jpg",
     image: "path/to/product-image-4.jpg",
     date: "2023-11-15",
@@ -50,7 +50,7 @@ const products = [
     benefits: ["intensive-repair"],
   },
   {
-    id: 17,
+    id: "17",
     cover: "path/to/cover-image-5.jpg",
     image: "path/to/product-image-5.jpg",
     date: "2023-11-15",
@@ -60,7 +60,7 @@ const products = [
     benefits: ["volume"],
   },
   {
-    id: 18,
+    id: "18",
     cover: "path/to/cover-image-6.jpg",
     image: "path/to/product-image-6.jpg",
     date: "2023-11-15",
@@ -70,7 +70,7 @@ const products = [
     benefits: ["shine", "intensive-repair"],
   },
   {
-    id: 19,
+    id: "19",
     cover: "path/to/cover-image-7.jpg",
     image: "path/to/product-image-7.jpg",
     date: "2023-11-15",
@@ -80,7 +80,7 @@ const products = [
     benefits: ["shine", "humidity"],
   },
   {
-    id: 20,
+    id: "20",
     cover: "path/to/cover-image-8.jpg",
     image: "path/to/product-image-8.jpg",
     date: "2023-11-15",
@@ -90,7 +90,7 @@ const products = [
     benefits: ["humidity"],
   },
   {
-    id: 21,
+    id: "21",
     cover: "path/to/cover-image-9.jpg",
     image: "path/to/product-image-9.jpg",
     date: "2023-11-15",
@@ -100,67 +100,67 @@ const products = [
     benefits: ["intensive-repair"],
   },
   {
-    id: 22,
+    id: "22",
     cover: "path/to/cover-image-10.jpg",
     image: "path/to/product-image-10.jpg",
     date: "2023-11-15",
     price: "34.50",
     sold: 18,
-    title: "Bali man",
+    title: "Krem per dur",
     benefits: ["shine"],
   },
   {
-    id: 23,
+    id: "23",
     cover: "path/to/cover-image-11.jpg",
     image: "path/to/product-image-11.jpg",
     date: "2023-11-15",
     price: "28.75",
     sold: 11,
-    title: "Senet e bajramit",
+    title: "Hair ruiner",
     benefits: ["volume"],
   },
   {
-    id: 24,
+    id: "24",
     cover: "path/to/cover-image-12.jpg",
     image: "path/to/product-image-12.jpg",
     date: "2023-11-15",
     price: "42.99",
     sold: 9,
-    title: "Flija, pite sene",
+    title: "Elbow smoother",
     benefits: ["humidity"],
   },
   {
-    id: 25,
+    id: "25",
     cover: "path/to/cover-image-13.jpg",
     image: "path/to/product-image-13.jpg",
     date: "2023-11-15",
     price: "31.25",
     sold: 14,
-    title: "Ta kona, ta kona",
+    title: "Handwasher",
     benefits: ["intensive-repair"],
   },
   {
-    id: 26,
+    id: "26",
     cover: "path/to/cover-image-14.jpg",
     image: "path/to/product-image-14.jpg",
     date: "2023-11-15",
     price: "48.90",
     sold: 5,
-    title: "Para konviktit numer 5",
+    title: "Scalp shampoo",
     benefits: ["volume"],
   },
   {
-    id: 27,
+    id: "27",
     cover: "path/to/cover-image-15.jpg",
     image: "path/to/product-image-15.jpg",
     date: "2023-11-15",
     price: "25.75",
     sold: 16,
-    title: "Le mos u merr",
+    title: "Nail polisher",
     benefits: ["intensive-repair"],
   },
   {
-    id: 28,
+    id: "28",
     cover: "path/to/cover-image-16.jpg",
     image: "path/to/product-image-16.jpg",
     date: "2023-11-15",
@@ -170,7 +170,7 @@ const products = [
     benefits: ["humidity"],
   },
   {
-    id: 29,
+    id: "29",
     cover: "path/to/cover-image-17.jpg",
     image: "path/to/product-image-17.jpg",
     date: "2023-11-15",
@@ -180,7 +180,7 @@ const products = [
     benefits: ["shine", "intensive-repair"],
   },
   {
-    id: 30,
+    id: "30",
     cover: "path/to/cover-image-18.jpg",
     image: "path/to/product-image-18.jpg",
     date: "2023-11-15",
@@ -190,7 +190,7 @@ const products = [
     benefits: ["humidity", "intensive-repair"],
   },
   {
-    id: 31,
+    id: "31",
     cover: "path/to/cover-image-19.jpg",
     image: "path/to/product-image-19.jpg",
     date: "2023-11-15",
@@ -219,19 +219,52 @@ const productGenerator = (product) => {
             </div>`;
 };
 
-const productsItemToBeRendered = products.map((product) =>
-  productGenerator(product)
-);
-
-// adding all eventlistener to inputs
-const allInputs = document.querySelectorAll("input");
-console.log(allInputs);
-
+const chipGenerator = (chip) => {
+  return `<div class="chip chip-${chip}">
+                <p class="chip-title">${chip}</p>
+                <div class="deleteChip">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="currentColor"></path> </g></svg></div>
+              </div>`;
+};
 let benefitsSelected = [];
 let radioButtonActive;
 let sorted = [...products];
 
+const chipRemover = (chip) => {
+  document.querySelector(`.chip-${chip}`)?.remove();
+};
+
+const productsItemToBeRendered = products.map((product) =>
+  productGenerator(product)
+);
+const chipContainer = document.querySelector(".filter__chip-holder");
+
+const addChipToChipContainer = (chip) => {
+  chipContainer.insertAdjacentHTML("beforeend", chipGenerator(chip));
+};
+
+chipContainer.addEventListener("click", (e) => {
+  if (e.target.closest(".deleteChip")) {
+    const chip = e.target.closest(".chip");
+    chip.remove();
+    const chipText = chip.querySelector("p").innerText;
+    benefitsSelected = benefitsSelected.filter(
+      (benefit) => benefit !== chipText
+    );
+    const inputOfClickedChip = document.querySelector(`input#${chipText}`);
+    inputOfClickedChip.checked = false;
+    // dispatching a new event to handle the change in our input
+    const changeEvent = new Event("change");
+    inputOfClickedChip.dispatchEvent(changeEvent);
+  }
+});
+
+// adding all eventlistener to inputs
+const allInputs = document.querySelectorAll("input");
+
 const filterProducts = (benefitsToCheck) => {
+  console.log("running");
+  console.log(sorted);
   sorted = sorted.filter((product) => {
     return benefitsToCheck.some((benefit) =>
       product.benefits.includes(benefit)
@@ -313,42 +346,51 @@ allInputs.forEach((input) => {
         radioButtonActive = "most-sold";
         break;
       case "shine":
+        console.log("changed");
         if (input.checked) {
           benefitsSelected.push("shine");
+          addChipToChipContainer("shine");
         } else {
           benefitsSelected = benefitsSelected.filter(
             (benefit) => benefit !== "shine"
           );
+          chipRemover("shine");
         }
         break;
       case "volume":
         console.log(input.checked);
         if (input.checked) {
           benefitsSelected.push("volume");
+          addChipToChipContainer("volume");
         } else {
           benefitsSelected = benefitsSelected.filter(
             (benefit) => benefit !== "volume"
           );
+          chipRemover("volume");
         }
         break;
       case "humidity":
         console.log(input.checked);
         if (input.checked) {
           benefitsSelected.push("humidity");
+          addChipToChipContainer("humidity");
         } else {
           benefitsSelected = benefitsSelected.filter(
             (benefit) => benefit !== "humidity"
           );
+          chipRemover("humidity");
         }
         break;
       case "intensive-repair":
         console.log(input.checked);
         if (input.checked) {
           benefitsSelected.push("intensive-repair");
+          addChipToChipContainer("intensive-repair");
         } else {
           benefitsSelected = benefitsSelected.filter(
             (benefit) => benefit !== "intensive-repair"
           );
+          chipRemover("intensive-repair");
         }
         break;
       default:
