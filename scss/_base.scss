@@ -1,7 +1,7 @@
 $color-primary: #32374a;
 $color-primary-dark: black;
 
-$color-secondary: red;
+$bg-color: #ecf3f9;
 
 $font-primary: sans-serif;
 $shadow-1: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
@@ -24,6 +24,7 @@ body {
   font-weight: 300;
   color: $color-primary;
   line-height: 1.6;
+  background-color: $bg-color;
 }
 
 a,

@@ -426,7 +426,7 @@ const lineOfMonthProducts = [
 const allProducts = [...productsData, ...lineOfMonthProducts];
 
 const productsCreator = (product) => {
-  return `<div id="${product.id}"           class="products__product">
+  return `<div id="${product.id}" class="products__product">
               <div  class="products__image-holder">
                 <div style="background-image: url('${product.cover}')" class="cover"></div>
                 <div style="background-image: url('${product.image}')" class="image"></div>

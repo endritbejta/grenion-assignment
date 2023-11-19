@@ -125,3 +125,27 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .shop {
+    &-center {
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .shop {
+    &-center {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .shop {
+    &-center {
+      width: 100%;
+    }
+  }
+}

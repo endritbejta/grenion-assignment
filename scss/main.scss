@@ -4,6 +4,7 @@
 @import "./typography.scss";
 @import "./abstracts.scss";
 @import "./header.scss";
-@import "./components.scss";
+@import "./homepage/components";
+@import "./homepage/shop";
+@import "./shoppage/components";
 @import "./footer.scss";
-@import "./shop";

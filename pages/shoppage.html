@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="../css/compile.css" />
+  <body>
+    <main class="shop-page">
+      <aside class="filter">
+        <div class="filter__holder">
+          <div id="sort-by" class="filter__item">
+            <div class="filter__type filter__type--sort-by">
+              <p class="title">sort by</p>
+              <div class="plus-minus">
+                <svg
+                  class="vertical"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="Interface / Line_M">
+                      <path
+                        id="Vector"
+                        d="M12 17V7"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+                <svg
+                  class="horizontal"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(90)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="Interface / Line_M">
+                      <path
+                        id="Vector"
+                        d="M12 17V7"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <ul id="sort-by" class="filter__type-options">
+              <li class="option">
+                <label for="selected">
+                  <input type="radio" name="item" id="selected" />
+                  Selected</label
+                >
+              </li>
+              <li class="option">
+                <label for="most-sold">
+                  <input type="radio" name="item" id="most-sold" />
+                  Most Sold</label
+                >
+              </li>
+              <li class="option">
+                <label fort="a-to-z">
+                  <input type="radio" name="item" id="a-to-z" />
+                  Alphabetically, A-Z</label
+                >
+              </li>
+              <li class="option">
+                <label for="z-to-a">
+                  <input type="radio" name="item" id="z-to-a" />
+                  Alphabetically, Z-A</label
+                >
+              </li>
+              <li class="option">
+                <label for="l-to-h">
+                  <input type="radio" name="item" id="l-to-h" />
+                  Price, low to high</label
+                >
+              </li>
+              <li class="option">
+                <label for="h-to-l">
+                  <input type="radio" name="item" id="h-to-l" />
+                  Price, high to low</label
+                >
+              </li>
+              <!-- <li class="option">
+                <label for="o-to-n">
+                  <input type="radio" name="item" id="o-to-n" />
+                  Date, old to new</label
+                >
+              </li>
+              <li class="option">
+                <label for="n-to-o">
+                  <input type="radio" name="item" id="n-to-o" />
+                  Date, new to old</label
+                >
+              </li> -->
+            </ul>
+          </div>
+          <div id="benefits" class="filter__item">
+            <div id="sort-by" class="filter__type filter__type--benefits">
+              <p class="title">Benefits</p>
+              <div class="plus-minus">
+                <svg
+                  class="vertical"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(0)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="Interface / Line_M">
+                      <path
+                        id="Vector"
+                        d="M12 17V7"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+                <svg
+                  class="horizontal"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="rotate(90)"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="Interface / Line_M">
+                      <path
+                        id="Vector"
+                        d="M12 17V7"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <ul class="filter__type-options">
+              <li class="option">
+                <label for="shine">
+                  <input type="checkbox" name="benefits" id="shine" />
+                  Shine</label
+                >
+              </li>
+              <li class="option">
+                <label for="volume">
+                  <input type="checkbox" name="benefits" id="volume" />
+                  Volume</label
+                >
+              </li>
+              <li class="option">
+                <label fort="humidity">
+                  <input type="checkbox" name="benefits" id="humidity" />
+                  Humidity</label
+                >
+              </li>
+              <li class="option">
+                <label for="intensive-repair">
+                  <input
+                    type="checkbox"
+                    name="benefits"
+                    id="intensive-repair"
+                  />
+                  Intensive Repair</label
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="filter__item">
+            <p class="title">Products type</p>
+            <div class="plus-minus"></div>
+          </div>
+
+          <div class="filter__item">
+            <p class="title">Price</p>
+            <div class="plus-minus"></div>
+          </div>
+        </div>
+      </aside>
+      <div class="shop-products"></div>
+    </main>
+    <script defer src="../scripts/shoppage.js"></script>
+  </body>
+</html>
