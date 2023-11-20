@@ -535,7 +535,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "34.50",
     sold: 18,
-    title: "Bali man",
+    title: "Krem per dur",
     benefits: ["shine"],
   },
   {
@@ -545,7 +545,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "28.75",
     sold: 11,
-    title: "Senet e bajramit",
+    title: "Hair ruiner",
     benefits: ["volume"],
   },
   {
@@ -555,7 +555,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "42.99",
     sold: 9,
-    title: "Flija, pite sene",
+    title: "Elbow smoother",
     benefits: ["humidity"],
   },
   {
@@ -565,7 +565,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "31.25",
     sold: 14,
-    title: "Ta kona, ta kona",
+    title: "Handwasher",
     benefits: ["intensive-repair"],
   },
   {
@@ -575,7 +575,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "48.90",
     sold: 5,
-    title: "Para konviktit numer 5",
+    title: "Scalp shampoo",
     benefits: ["volume"],
   },
   {
@@ -585,7 +585,7 @@ const allProducts = [
     date: "2023-11-15",
     price: "25.75",
     sold: 16,
-    title: "Le mos u merr",
+    title: "Nail polisher",
     benefits: ["intensive-repair"],
   },
   {

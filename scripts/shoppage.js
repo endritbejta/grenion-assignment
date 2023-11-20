@@ -285,16 +285,16 @@ chipContainer.addEventListener("click", (e) => {
 const allInputs = document.querySelectorAll("input");
 
 const filterProducts = (type, filterOptionToCheck) => {
-  console.log(type);
+  console.log("sortedArray: ", sorted);
   if (type === "benefits") {
     console.log("running");
-    sorted = sorted.filter((product) => {
+    sorted = products.filter((product) => {
       return filterOptionToCheck.some((benefit) =>
         product.benefits.includes(benefit)
       );
     });
   } else if (type === "product-type") {
-    sorted = sorted.filter((product) => {
+    sorted = products.filter((product) => {
       return filterOptionToCheck.some((productType) =>
         productType.includes(product.productType)
       );
@@ -305,11 +305,19 @@ const filterProducts = (type, filterOptionToCheck) => {
 
 const sortProducts = (type) => {
   console.log("sorted form sortProducts: ", sorted);
+  console.log(
+    "true or false: ",
+    productTypeSelected.length > 0 || benefitsSelected.length > 0
+  );
+  const arrayToSort =
+    productTypeSelected.length > 0 || benefitsSelected.length > 0
+      ? sorted
+      : products;
   switch (type) {
     case "a-to-z":
-      sorted = sorted.sort((a, b) => {
-        const titleA = a.title.toUpperCase();
-        const titleB = b.title.toUpperCase();
+      sorted = arrayToSort.sort((a, b) => {
+        const titleA = b.title.toUpperCase();
+        const titleB = a.title.toUpperCase();
 
         if (titleA < titleB) {
           return -1;
@@ -321,7 +329,7 @@ const sortProducts = (type) => {
       });
       break;
     case "z-to-a":
-      sorted = sorted.sort((a, b) => {
+      sorted = arrayToSort.sort((a, b) => {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
 
@@ -335,23 +343,29 @@ const sortProducts = (type) => {
       });
       break;
     case "h-to-l":
-      sorted = sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      sorted = arrayToSort.sort(
+        (a, b) => parseFloat(b.price) - parseFloat(a.price)
+      );
       break;
     case "l-to-h":
-      sorted = sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      sorted = arrayToSort.sort(
+        (a, b) => parseFloat(a.price) - parseFloat(b.price)
+      );
       break;
     case "n-to-o":
       break;
     case "o-to-n":
       break;
     case "most-sold":
-      sorted = sorted.sort((a, b) => b.sold - a.sold);
+      sorted = arrayToSort.sort((a, b) => b.sold - a.sold);
       break;
     default:
       break;
   }
 };
 
+//////////////////////////////////////////////////////
+// handling input changes
 allInputs.forEach((input) => {
   input.addEventListener("change", (e) => {
     switch (input.id) {
@@ -372,20 +386,24 @@ allInputs.forEach((input) => {
       case "most-sold":
         radioButtonActive = "most-sold";
         break;
+      ///// handling input changes of sort by filter
       case "shine":
-        console.log("changed");
+        /// handling both selecting and unselecting a benefit filter
         if (input.checked) {
+          /// adding a new element to benefits array
           benefitsSelected.push("shine");
+          /// adding the corresponding chip to chip container
           addChipToChipContainer("shine");
         } else {
+          // removing benefits from array
           benefitsSelected = benefitsSelected.filter(
             (benefit) => benefit !== "shine"
           );
+          // removing benefit chip
           chipRemover("shine");
         }
         break;
       case "volume":
-        console.log(input.checked);
         if (input.checked) {
           benefitsSelected.push("volume");
           addChipToChipContainer("volume");
@@ -397,7 +415,6 @@ allInputs.forEach((input) => {
         }
         break;
       case "humidity":
-        console.log(input.checked);
         if (input.checked) {
           benefitsSelected.push("humidity");
           addChipToChipContainer("humidity");
@@ -408,20 +425,25 @@ allInputs.forEach((input) => {
           chipRemover("humidity");
         }
         break;
+      ///// handling input changes of products type filter
+
       case "hair-mask":
-        console.log(input.checked);
+        // handling both selecting and unselecting checkbox
         if (input.checked) {
+          // adding a new element to array of product type
           productTypeSelected.push("hair-mask");
+          // adding chip to chip container
           addChipToChipContainer("hair-mask");
         } else {
+          /// removing the unselected element from array
           productTypeSelected = productTypeSelected.filter(
             (productType) => productType !== "hair-mask"
           );
+          /// removign the chip from chip container
           chipRemover("hair-mask");
         }
         break;
       case "intensive-repair":
-        console.log(input.checked);
         if (input.checked) {
           productTypeSelected.push("intensive-repair");
           addChipToChipContainer("intensive-repair");
@@ -481,40 +503,45 @@ allInputs.forEach((input) => {
       default:
     }
 
-    console.log("reading");
-
+    // sorting products by radio buttons
     sortProducts(radioButtonActive);
-    console.log(e.target);
+    // checking if we have any benefit filter active
     if (input.name === "benefits") {
       console.log("inside of loop");
       if (benefitsSelected.length > 0) {
-        console.log("inside of loop if 1");
-
         filterProducts(input.name, benefitsSelected);
       }
+      // checking if we have any product-type filter active
     } else if (input.name === "product-type") {
-      console.log("inside of loop if 2");
-      console.log(productTypeSelected);
       if (productTypeSelected.length > 0) {
         filterProducts(input.name, productTypeSelected);
       }
     }
-    console.log("sorted from to be rendered: ", sorted);
-    const newProductsToBeRendered = sorted.map((newSortedProduct) =>
-      productGenerator(newSortedProduct)
-    );
+
+    let newProductsToBeRendered;
+    // this check is made to handle the case when all of the filter are unselected, after being previosly selected
+    if (benefitsSelected.length === 0 && productTypeSelected.length === 0) {
+      newProductsToBeRendered = sorted.map((newSortedProduct) =>
+        productGenerator(newSortedProduct)
+      );
+    } else {
+      newProductsToBeRendered = sorted.map((newSortedProduct) =>
+        productGenerator(newSortedProduct)
+      );
+    }
+    /// html render
     shopProductsContainer.innerHTML = newProductsToBeRendered.join("");
   });
 });
-
+// initializing products
 shopProductsContainer.innerHTML = productsItemToBeRendered.join("");
 
+//////////////////////////////////////////////////////////////////
+////////////// sort by appear effect and logic
 const sortByFilterContainer = document.querySelector(".filter__type--sort-by");
 const sortByFilterContainerOptions = document.querySelector(
   ".filter__type-options"
 );
-console.log(sortByFilterContainer);
-
 const verticalLineToMakePlusSign =
   sortByFilterContainer.querySelector(".vertical");
 const liElements = sortByFilterContainerOptions.querySelectorAll("li");
@@ -523,7 +550,6 @@ liElements.forEach((li) => {
   totalHeight += li.clientHeight;
 });
 sortByFilterContainer.addEventListener("click", (e) => {
-  console.log(sortByFilterContainerOptions.clientHeight);
   if (sortByFilterContainerOptions.clientHeight === 0) {
     sortByFilterContainerOptions.style.height = `${totalHeight + 30}px`;
     sortByFilterContainerOptions.animate(
@@ -554,8 +580,9 @@ sortByFilterContainer.addEventListener("click", (e) => {
   console.log(totalHeight);
   verticalLineToMakePlusSign.classList.toggle("appear");
 });
-// making a on click handler for all of the filters
 
+//////////////////////////////////////////////////////////////////
+////////////// benefits appear effect and logic
 const benefitsFilterItem = document.getElementById("benefits");
 const benefitFilterItemOptions = benefitsFilterItem.querySelector(
   ".filter__type-options"
@@ -605,6 +632,8 @@ benefitsFilterItem.addEventListener("click", (e) => {
   }
 });
 
+//////////////////////////////////////////////////////////////////
+////////////// product type appear effect and logic
 const productTypeFilterItem = document.getElementById("product-type");
 const productTypeFilterItemOptions = productTypeFilterItem.querySelector(
   ".filter__type-options"
