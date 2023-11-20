@@ -683,3 +683,16 @@ productTypeFilterItem.addEventListener("click", (e) => {
     productTypeVerticalSign.classList.toggle("appear");
   }
 });
+
+/// remove all filters
+const removeAllFiltersButton = document.getElementById("remove-filters");
+console.log(removeAllFiltersButton);
+const changeEvent = new Event("change");
+removeAllFiltersButton.addEventListener("click", () => {
+  allInputs.forEach((input) => {
+    if (input.checked) {
+      input.checked = !input.checked;
+    }
+    input.dispatchEvent(changeEvent);
+  });
+});
