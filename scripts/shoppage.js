@@ -284,31 +284,47 @@ chipContainer.addEventListener("click", (e) => {
 // adding all eventlistener to inputs
 const allInputs = document.querySelectorAll("input");
 
-const filterProducts = (type, filterOptionToCheck) => {
-  console.log("sortedArray: ", sorted);
-  if (type === "benefits") {
-    console.log("running");
+const filterProducts = () => {
+  if (benefitsSelected.length > 0 && productTypeSelected.length === 0) {
+    console.log("only benefits: ", benefitsSelected);
     sorted = products.filter((product) => {
-      return filterOptionToCheck.some((benefit) =>
+      return benefitsSelected.some((benefit) =>
         product.benefits.includes(benefit)
       );
     });
-  } else if (type === "product-type") {
+  } else if (benefitsSelected.length > 0 && productTypeSelected.length > 0) {
+    console.log("both active", benefitsSelected, productTypeSelected);
+    if (benefitsSelected.length > 0 || productTypeSelected.length > 0) {
+      console.log("both active", benefitsSelected, productTypeSelected);
+      sorted = products.filter((product) => {
+        const benefitsMatch = benefitsSelected.every((benefit) =>
+          product.benefits.includes(benefit)
+        );
+        const productTypesMatch = productTypeSelected.includes(
+          product.productType
+        );
+
+        return benefitsMatch && productTypesMatch;
+      });
+    }
+  } else if (benefitsSelected.length === 0 && productTypeSelected.length > 0) {
+    console.log("only product type filter: ", productTypeSelected);
     sorted = products.filter((product) => {
-      return filterOptionToCheck.some((productType) =>
+      return productTypeSelected.some((productType) =>
         productType.includes(product.productType)
       );
     });
-    console.log("sorted form product type: ", sorted);
   }
+  return sorted;
 };
 
 const sortProducts = (type) => {
+  console.log(productTypeSelected, benefitsSelected);
   const arrayToSort =
     productTypeSelected.length > 0 || benefitsSelected.length > 0
-      ? sorted
+      ? filterProducts()
       : products;
-  console.log("array to sort: ", type, arrayToSort);
+  console.log("array to sort: ", arrayToSort);
   switch (type) {
     case "a-to-z":
       sorted = arrayToSort.sort((a, b) => {
@@ -356,6 +372,7 @@ const sortProducts = (type) => {
       sorted = arrayToSort.sort((a, b) => b.sold - a.sold);
       break;
     default:
+      // no filter if no radio button is selected
       sorted = arrayToSort;
       break;
   }
