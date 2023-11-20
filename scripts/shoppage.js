@@ -304,9 +304,10 @@ const filterProducts = (type, filterOptionToCheck) => {
 };
 
 const sortProducts = (type) => {
+  console.log("sorted form sortProducts: ", sorted);
   switch (type) {
     case "a-to-z":
-      sorted = products.sort((a, b) => {
+      sorted = sorted.sort((a, b) => {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
 
@@ -320,7 +321,7 @@ const sortProducts = (type) => {
       });
       break;
     case "z-to-a":
-      sorted = products.sort((a, b) => {
+      sorted = sorted.sort((a, b) => {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
 
@@ -334,24 +335,20 @@ const sortProducts = (type) => {
       });
       break;
     case "h-to-l":
-      sorted = products.sort(
-        (a, b) => parseFloat(b.price) - parseFloat(a.price)
-      );
+      sorted = sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       break;
     case "l-to-h":
-      sorted = products.sort(
-        (a, b) => parseFloat(a.price) - parseFloat(b.price)
-      );
+      sorted = sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       break;
     case "n-to-o":
       break;
     case "o-to-n":
       break;
     case "most-sold":
-      sorted = products.sort((a, b) => b.sold - a.sold);
+      sorted = sorted.sort((a, b) => b.sold - a.sold);
       break;
     default:
-      sorted = [...products];
+      break;
   }
 };
 
@@ -493,15 +490,16 @@ allInputs.forEach((input) => {
       if (benefitsSelected.length > 0) {
         console.log("inside of loop if 1");
 
-        filterProducts("benefits", benefitsSelected);
+        filterProducts(input.name, benefitsSelected);
       }
     } else if (input.name === "product-type") {
       console.log("inside of loop if 2");
       console.log(productTypeSelected);
       if (productTypeSelected.length > 0) {
-        filterProducts("product-type", productTypeSelected);
+        filterProducts(input.name, productTypeSelected);
       }
     }
+    console.log("sorted from to be rendered: ", sorted);
     const newProductsToBeRendered = sorted.map((newSortedProduct) =>
       productGenerator(newSortedProduct)
     );
