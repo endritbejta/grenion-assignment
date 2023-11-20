@@ -126,7 +126,7 @@ const itemGenerator = (item) => {
               <div class="shop-center__item-image" style="background-image: url('${item.image}')"></div>
               <div class="shop-center__item-content">
                 <h3 class="title">${item.title}</h3>
-                <p class="amout">$ <span>${item.price}</span></p>
+                <p class="amout">€ <span>${item.price}</span></p>
                 <div class="actions">
                   <div class="counter">
                     <span class="minus">-</span>

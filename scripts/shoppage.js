@@ -8,6 +8,7 @@ const products = [
     sold: 8,
     title: "Hydration Set",
     benefits: ["shine", "volume", "humidity", "intensive-repair"],
+    productType: "hair-mask",
   },
   {
     id: "13",
@@ -18,6 +19,7 @@ const products = [
     sold: 5,
     title: "Eyelash set",
     benefits: ["shine", "humidity"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "14",
@@ -28,6 +30,7 @@ const products = [
     sold: 10,
     benefits: ["intensive-repair"],
     title: "Hair set",
+    productType: "styling-and-care",
   },
   {
     id: "15",
@@ -38,6 +41,7 @@ const products = [
     sold: 15,
     title: "Well care set",
     benefits: ["shine"],
+    productType: "starter-mermaid",
   },
   {
     id: "16",
@@ -48,6 +52,7 @@ const products = [
     sold: 3,
     title: "Moustorizing",
     benefits: ["intensive-repair"],
+    productType: "expert-mermaid",
   },
   {
     id: "17",
@@ -58,6 +63,7 @@ const products = [
     sold: 7,
     title: "Nourishing set",
     benefits: ["volume"],
+    productType: "starter-mermaid",
   },
   {
     id: "18",
@@ -68,6 +74,7 @@ const products = [
     sold: 12,
     title: "Morning set",
     benefits: ["shine", "intensive-repair"],
+    productType: -"shampoo-conditioner",
   },
   {
     id: "19",
@@ -78,6 +85,7 @@ const products = [
     sold: 6,
     title: "Night Set",
     benefits: ["shine", "humidity"],
+    productType: "hair-mask",
   },
   {
     id: "20",
@@ -88,6 +96,7 @@ const products = [
     sold: 9,
     title: "Always ready",
     benefits: ["humidity"],
+    productType: "hair-mask",
   },
   {
     id: "21",
@@ -98,6 +107,7 @@ const products = [
     sold: 12,
     title: "Never ever rest",
     benefits: ["intensive-repair"],
+    productType: "styling-and-care",
   },
   {
     id: "22",
@@ -108,6 +118,7 @@ const products = [
     sold: 18,
     title: "Krem per dur",
     benefits: ["shine"],
+    productType: "styling-and-care",
   },
   {
     id: "23",
@@ -118,6 +129,7 @@ const products = [
     sold: 11,
     title: "Hair ruiner",
     benefits: ["volume"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "24",
@@ -128,6 +140,7 @@ const products = [
     sold: 9,
     title: "Elbow smoother",
     benefits: ["humidity"],
+    productType: "expert-mermaid",
   },
   {
     id: "25",
@@ -138,6 +151,7 @@ const products = [
     sold: 14,
     title: "Handwasher",
     benefits: ["intensive-repair"],
+    productType: "starter-mermaid",
   },
   {
     id: "26",
@@ -148,6 +162,7 @@ const products = [
     sold: 5,
     title: "Scalp shampoo",
     benefits: ["volume"],
+    productType: "hair-mask",
   },
   {
     id: "27",
@@ -158,6 +173,7 @@ const products = [
     sold: 16,
     title: "Nail polisher",
     benefits: ["intensive-repair"],
+    productType: "expert-mermaid",
   },
   {
     id: "28",
@@ -167,6 +183,7 @@ const products = [
     price: "37.80",
     sold: 8,
     title: "Facemask",
+    productType: "starter-mermaid",
     benefits: ["humidity"],
   },
   {
@@ -178,6 +195,7 @@ const products = [
     sold: 13,
     title: "HandCare set",
     benefits: ["shine", "intensive-repair"],
+    productType: "hair-care",
   },
   {
     id: "30",
@@ -188,6 +206,7 @@ const products = [
     sold: 10,
     title: "Eyelashes set",
     benefits: ["humidity", "intensive-repair"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "31",
@@ -198,6 +217,7 @@ const products = [
     sold: 15,
     title: "Eyebrows set",
     benefits: ["shine", "volume"],
+    productType: "starter-mermaid",
   },
 ];
 
@@ -215,7 +235,7 @@ const productGenerator = (product) => {
               <p class="heading-4 products__product-title">
                 ${product.title}
               </p>
-              <p class="heading-3 products__product-price">${product.price}</p>
+              <p class="heading-3 products__product-price">€ ${product.price}</p>
             </div>`;
 };
 
@@ -226,7 +246,9 @@ const chipGenerator = (chip) => {
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="currentColor"></path> </g></svg></div>
               </div>`;
 };
+
 let benefitsSelected = [];
+let productTypeSelected = [];
 let radioButtonActive;
 let sorted = [...products];
 
@@ -262,14 +284,23 @@ chipContainer.addEventListener("click", (e) => {
 // adding all eventlistener to inputs
 const allInputs = document.querySelectorAll("input");
 
-const filterProducts = (benefitsToCheck) => {
-  console.log("running");
-  console.log(sorted);
-  sorted = sorted.filter((product) => {
-    return benefitsToCheck.some((benefit) =>
-      product.benefits.includes(benefit)
-    );
-  });
+const filterProducts = (type, filterOptionToCheck) => {
+  console.log(type);
+  if (type === "benefits") {
+    console.log("running");
+    sorted = sorted.filter((product) => {
+      return filterOptionToCheck.some((benefit) =>
+        product.benefits.includes(benefit)
+      );
+    });
+  } else if (type === "product-type") {
+    sorted = sorted.filter((product) => {
+      return filterOptionToCheck.some((productType) =>
+        productType.includes(product.productType)
+      );
+    });
+    console.log("sorted form product type: ", sorted);
+  }
 };
 
 const sortProducts = (type) => {
@@ -325,8 +356,7 @@ const sortProducts = (type) => {
 };
 
 allInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    console.log("benefitsSelected: ", benefitsSelected);
+  input.addEventListener("change", (e) => {
     switch (input.id) {
       case "selected":
         break;
@@ -381,24 +411,96 @@ allInputs.forEach((input) => {
           chipRemover("humidity");
         }
         break;
+      case "hair-mask":
+        console.log(input.checked);
+        if (input.checked) {
+          productTypeSelected.push("hair-mask");
+          addChipToChipContainer("hair-mask");
+        } else {
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "hair-mask"
+          );
+          chipRemover("hair-mask");
+        }
+        break;
       case "intensive-repair":
         console.log(input.checked);
         if (input.checked) {
-          benefitsSelected.push("intensive-repair");
+          productTypeSelected.push("intensive-repair");
           addChipToChipContainer("intensive-repair");
         } else {
-          benefitsSelected = benefitsSelected.filter(
-            (benefit) => benefit !== "intensive-repair"
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "intensive-repair"
           );
           chipRemover("intensive-repair");
         }
         break;
+      case "shampoo-conditioner":
+        if (input.checked) {
+          productTypeSelected.push("shampoo-conditioner");
+          addChipToChipContainer("shampoo-conditioner");
+        } else {
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "shampoo-conditioner"
+          );
+          chipRemover("shampoo-conditioner");
+        }
+        break;
+      case "styling-and-care":
+        if (input.checked) {
+          productTypeSelected.push("styling-and-care");
+          addChipToChipContainer("styling-and-care");
+        } else {
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "styling-and-care"
+          );
+          chipRemover("styling-and-care");
+        }
+        break;
+      case "starter-mermaid":
+        if (input.checked) {
+          productTypeSelected.push("starter-mermaid");
+          addChipToChipContainer("starter-mermaid");
+        } else {
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "starter-mermaid"
+          );
+          chipRemover("starter-mermaid");
+        }
+        break;
+
+      case "expert-mermaid":
+        if (input.checked) {
+          productTypeSelected.push("expert-mermaid");
+          addChipToChipContainer("expert-mermaid");
+        } else {
+          productTypeSelected = productTypeSelected.filter(
+            (productType) => productType !== "expert-mermaid"
+          );
+          chipRemover("expert-mermaid");
+        }
+        break;
+
       default:
     }
 
+    console.log("reading");
+
     sortProducts(radioButtonActive);
-    if (benefitsSelected.length > 0) {
-      filterProducts(benefitsSelected);
+    console.log(e.target);
+    if (input.name === "benefits") {
+      console.log("inside of loop");
+      if (benefitsSelected.length > 0) {
+        console.log("inside of loop if 1");
+
+        filterProducts("benefits", benefitsSelected);
+      }
+    } else if (input.name === "product-type") {
+      console.log("inside of loop if 2");
+      console.log(productTypeSelected);
+      if (productTypeSelected.length > 0) {
+        filterProducts("product-type", productTypeSelected);
+      }
     }
     const newProductsToBeRendered = sorted.map((newSortedProduct) =>
       productGenerator(newSortedProduct)
@@ -472,11 +574,6 @@ benefitsFilterItem.addEventListener("click", (e) => {
   console.log("firing");
   if (!e.target.closest(".filter__type-options")) {
     if (benefitFilterItemOptions.clientHeight === 0) {
-      // console.log("in");
-      // const sortByFilterContainerOptionsStyles = getComputedStyle(
-      //   sortByFilterContainerOptions
-      // );
-      // console.log(sortByFilterContainerOptionsStyles.rowGap);
       benefitFilterItemOptions.style.height = `${
         totalBenefitsListHeight + 15
       }px`;
@@ -507,5 +604,55 @@ benefitsFilterItem.addEventListener("click", (e) => {
     }
     console.log(totalBenefitsListHeight);
     benefitsVerticalSign.classList.toggle("appear");
+  }
+});
+
+const productTypeFilterItem = document.getElementById("product-type");
+const productTypeFilterItemOptions = productTypeFilterItem.querySelector(
+  ".filter__type-options"
+);
+const productTypeVerticalSign =
+  productTypeFilterItem.querySelector(".vertical");
+const productTypeOptionsListItems =
+  benefitFilterItemOptions.querySelectorAll("li");
+
+let totalProductTypeListHeight = 0;
+productTypeOptionsListItems.forEach((li) => {
+  totalProductTypeListHeight += li.clientHeight;
+});
+productTypeFilterItem.addEventListener("click", (e) => {
+  console.log("firing");
+  if (!e.target.closest(".filter__type-options")) {
+    if (productTypeFilterItemOptions.clientHeight === 0) {
+      productTypeFilterItemOptions.style.height = `${
+        totalProductTypeListHeight + 55
+      }px`;
+      productTypeFilterItemOptions.animate(
+        {
+          opacity: 1,
+          transform: "translateY(0)",
+        },
+        {
+          fill: "forwards",
+          easing: "ease",
+          duration: 300,
+          delay: 100,
+        }
+      );
+    } else {
+      productTypeFilterItemOptions.style.height = "0px";
+      productTypeFilterItemOptions.animate(
+        {
+          opacity: 0,
+          transform: "translateY(50%)",
+        },
+        {
+          fill: "forwards",
+          duration: 0,
+        }
+      );
+    }
+    console.log(totalProductTypeListHeight);
+    productTypeVerticalSign.classList.toggle("appear");
   }
 });
