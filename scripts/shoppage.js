@@ -304,15 +304,11 @@ const filterProducts = (type, filterOptionToCheck) => {
 };
 
 const sortProducts = (type) => {
-  console.log("sorted form sortProducts: ", sorted);
-  console.log(
-    "true or false: ",
-    productTypeSelected.length > 0 || benefitsSelected.length > 0
-  );
   const arrayToSort =
     productTypeSelected.length > 0 || benefitsSelected.length > 0
       ? sorted
       : products;
+  console.log("array to sort: ", type, arrayToSort);
   switch (type) {
     case "a-to-z":
       sorted = arrayToSort.sort((a, b) => {
@@ -360,6 +356,7 @@ const sortProducts = (type) => {
       sorted = arrayToSort.sort((a, b) => b.sold - a.sold);
       break;
     default:
+      sorted = arrayToSort;
       break;
   }
 };
@@ -504,19 +501,17 @@ allInputs.forEach((input) => {
     }
 
     // sorting products by radio buttons
-    sortProducts(radioButtonActive);
     // checking if we have any benefit filter active
-    if (input.name === "benefits") {
-      console.log("inside of loop");
-      if (benefitsSelected.length > 0) {
-        filterProducts(input.name, benefitsSelected);
-      }
+    if (input.name === "benefits" && benefitsSelected.length > 0) {
+      filterProducts(input.name, benefitsSelected);
       // checking if we have any product-type filter active
-    } else if (input.name === "product-type") {
-      if (productTypeSelected.length > 0) {
-        filterProducts(input.name, productTypeSelected);
-      }
+    } else if (
+      input.name === "product-type" &&
+      productTypeSelected.length > 0
+    ) {
+      filterProducts(input.name, productTypeSelected);
     }
+    sortProducts(radioButtonActive);
 
     let newProductsToBeRendered;
     // this check is made to handle the case when all of the filter are unselected, after being previosly selected
