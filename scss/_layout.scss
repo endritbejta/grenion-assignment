@@ -16,6 +16,13 @@
   inset: 0;
 }
 
+.item {
+  display: flex;
+  width: 100vw;
+  position: relative;
+  height: auto;
+}
+
 @media (max-width: 800px) {
   .shop-page {
     flex-direction: column;

@@ -62,17 +62,15 @@
       }
     }
     &-options {
-      display: flex;
+      display: none;
       list-style-type: none;
       flex-direction: column;
       gap: 5px;
+      height: auto;
       opacity: 0;
       transform: translateY(50%);
-      height: 0;
       overflow: hidden;
       transition: height 0.3s ease;
-      // display: none;
-      // visibility: hidden;
 
       .option {
         padding: 0 10px;

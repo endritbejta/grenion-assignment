@@ -563,7 +563,7 @@ liElements.forEach((li) => {
 });
 sortByFilterContainer.addEventListener("click", (e) => {
   if (sortByFilterContainerOptions.clientHeight === 0) {
-    sortByFilterContainerOptions.style.height = `${totalHeight + 30}px`;
+    sortByFilterContainerOptions.style.display = "block";
     sortByFilterContainerOptions.animate(
       {
         opacity: 1,
@@ -577,7 +577,7 @@ sortByFilterContainer.addEventListener("click", (e) => {
       }
     );
   } else {
-    sortByFilterContainerOptions.style.height = "0px";
+    sortByFilterContainerOptions.style.display = "none";
     sortByFilterContainerOptions.animate(
       {
         opacity: 0,
@@ -611,9 +611,7 @@ benefitsFilterItem.addEventListener("click", (e) => {
   console.log("firing");
   if (!e.target.closest(".filter__type-options")) {
     if (benefitFilterItemOptions.clientHeight === 0) {
-      benefitFilterItemOptions.style.height = `${
-        totalBenefitsListHeight + 15
-      }px`;
+      benefitFilterItemOptions.style.display = "block";
       benefitFilterItemOptions.animate(
         {
           opacity: 1,
@@ -627,7 +625,7 @@ benefitsFilterItem.addEventListener("click", (e) => {
         }
       );
     } else {
-      benefitFilterItemOptions.style.height = "0px";
+      benefitFilterItemOptions.style.display = "none";
       benefitFilterItemOptions.animate(
         {
           opacity: 0,
@@ -663,9 +661,7 @@ productTypeFilterItem.addEventListener("click", (e) => {
   console.log("firing");
   if (!e.target.closest(".filter__type-options")) {
     if (productTypeFilterItemOptions.clientHeight === 0) {
-      productTypeFilterItemOptions.style.height = `${
-        totalProductTypeListHeight + 55
-      }px`;
+      productTypeFilterItemOptions.style.display = "block";
       productTypeFilterItemOptions.animate(
         {
           opacity: 1,
@@ -679,7 +675,7 @@ productTypeFilterItem.addEventListener("click", (e) => {
         }
       );
     } else {
-      productTypeFilterItemOptions.style.height = "0px";
+      productTypeFilterItemOptions.style.display = "none";
       productTypeFilterItemOptions.animate(
         {
           opacity: 0,
