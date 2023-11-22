@@ -305,7 +305,7 @@ const addChipToChipContainer = (chip) => {
   chipContainer.insertAdjacentHTML("beforeend", chipGenerator(chip));
 };
 
-chipContainer.addEventListener("click", (e) => {
+chipContainer?.addEventListener("click", (e) => {
   if (e.target.closest(".deleteChip")) {
     const chip = e.target.closest(".chip");
     chip.remove();
@@ -586,7 +586,9 @@ allInputs.forEach((input) => {
   });
 });
 // initializing products
-shopProductsContainer.innerHTML = productsItemToBeRendered.join("");
+if(shopProductsContainer) {
+  shopProductsContainer?.innerHTML = productsItemToBeRendered.join("");
+}
 
 //////////////////////////////////////////////////////////////////
 ////////////// sort by appear effect and logic

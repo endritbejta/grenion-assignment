@@ -26,15 +26,15 @@ const previewImages = galleryPreview.querySelectorAll("img");
 console.log(images, previewImages);
 
 // current slide
-let currentSlide = 0;
+let currSlide = 0;
 nextImageButton.addEventListener("click", () => {
   // we make the button of the current photo invisible
-  previewImages[currentSlide].style.border = "2px solid transparent";
+  previewImages[currSlide].style.border = "2px solid transparent";
   // add 1 when we click next button, and handling special cases
-  if (currentSlide === images.length - 1) {
-    currentSlide = 0;
+  if (currSlide === images.length - 1) {
+    currSlide = 0;
   } else {
-    currentSlide += 1;
+    currSlide += 1;
   }
   // moving the gallery photos on click
   galleryPhotos.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -67,20 +67,22 @@ const additionalInfoTitles = additionalInfoContainer.querySelectorAll(".title");
 additionalInfoTitles.forEach((title) => {
   title.addEventListener("click", (e) => {
     additionalInfoTitles.forEach((titleInside) => {
-      if (titleInside.id !== title.id) {
-        title.classList.remove("activeTitle");
-      }
+      titleInside.classList.remove("activeTitle");
     });
-    additionalInfoContainer
-      .querySelectorAll(".context")
-      .forEach((context) => context.classList.remove("activeContext"));
-    // adding the active state to the title we clicked
-    title.classList.toggle("activeTitle");
-    // finding the context of the said clicked title and updating it
-    const context = additionalInfoContainer.querySelector(
-      `.${title.id}-context`
-    );
-    console.log(context);
-    context.classList.toggle("activeContext");
+
+    if (title.classList.contains("activeTitle")) {
+      console.log("rruning");
+    } else {
+      additionalInfoContainer
+        .querySelectorAll(".context")
+        .forEach((context) => context.classList.remove("activeContext"));
+      // adding the active state to the title we clicked
+      title.classList.toggle("activeTitle");
+      // finding the context of the said clicked title and updating it
+      const context = additionalInfoContainer.querySelector(
+        `.${title.id}-context`
+      );
+      context.classList.toggle("activeContext");
+    }
   });
 });
