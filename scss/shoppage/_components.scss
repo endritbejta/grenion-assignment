@@ -94,11 +94,15 @@
 
   &__product {
     width: unset;
-    height: 35vh;
+    height: 45vh;
     min-width: unset;
-    background-color: aliceblue;
-    .cover {
-      background-color: red;
+    .cover,
+    .image {
+      background-color: $bg-color;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      background-size: cover;
     }
   }
 }

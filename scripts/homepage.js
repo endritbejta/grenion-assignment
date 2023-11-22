@@ -123,7 +123,7 @@ const updateItem = () => {
 
 const itemGenerator = (item) => {
   return `<div id="${item.id}" class="shop-center__item">
-              <div class="shop-center__item-image" style="background-image: url('${item.image}')"></div>
+              <div class="shop-center__item-image" style="background-image: url('${item.cover}')"></div>
               <div class="shop-center__item-content">
                 <h3 class="title">${item.title}</h3>
                 <p class="amout">€ <span>${item.price}</span></p>
@@ -430,203 +430,263 @@ const allProducts = [
   ...lineOfMonthProducts,
   {
     id: "12",
-    cover: "path/to/cover-image-0.jpg",
-    image: "path/to/product-image-0.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_1296x.jpg?v=1668074116",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "43.21",
     sold: 8,
     title: "Hydration Set",
     benefits: ["shine", "volume", "humidity", "intensive-repair"],
+    productType: "hair-mask",
   },
   {
     id: "13",
-    cover: "path/to/cover-image-1.jpg",
-    image: "path/to/product-image-1.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-hydration_starter_540x.jpg?v=1659107564",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "29.99",
     sold: 5,
     title: "Eyelash set",
     benefits: ["shine", "humidity"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "14",
-    cover: "path/to/cover-image-2.jpg",
-    image: "path/to/product-image-2.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-repairing_routine-set_NEW_with-bubble_1_540x.jpg?v=1668175333",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "41.25",
     sold: 10,
     benefits: ["intensive-repair"],
     title: "Hair set",
+    productType: "styling-and-care",
   },
   {
     id: "15",
-    cover: "path/to/cover-image-3.jpg",
-    image: "path/to/product-image-3.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/files/MM-wild_hibiscus-clay_mask_456b75ff-348b-4d6f-b7b4-3d45c45c8c31_540x.webp?v=1699256475",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "35.50",
     sold: 15,
     title: "Well care set",
     benefits: ["shine"],
+    productType: "starter-mermaid",
   },
   {
     id: "16",
-    cover: "path/to/cover-image-4.jpg",
-    image: "path/to/product-image-4.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/files/DesignohneTitel_1_540x.png?v=1690799514",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "50.00",
     sold: 3,
     title: "Moustorizing",
     benefits: ["intensive-repair"],
+    productType: "expert-mermaid",
   },
   {
     id: "17",
-    cover: "path/to/cover-image-5.jpg",
-    image: "path/to/product-image-5.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-pure_algae-conditioner_540x.jpg?v=1669885208",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "27.80",
     sold: 7,
     title: "Nourishing set",
     benefits: ["volume"],
+    productType: "starter-mermaid",
   },
   {
     id: "18",
-    cover: "path/to/cover-image-6.jpg",
-    image: "path/to/product-image-6.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-calm_me-scalp_concentrate1_540x.png?v=1667394128",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "39.99",
     sold: 12,
     title: "Morning set",
     benefits: ["shine", "intensive-repair"],
+    productType: -"shampoo-conditioner",
   },
   {
     id: "19",
-    cover: "path/to/cover-image-7.jpg",
-    image: "path/to/product-image-7.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-refresh-me-scalp_cleanser_540x.jpg?v=1672664062",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "22.49",
     sold: 6,
     title: "Night Set",
     benefits: ["shine", "humidity"],
+    productType: "hair-mask",
   },
   {
     id: "20",
-    cover: "path/to/cover-image-8.jpg",
-    image: "path/to/product-image-8.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-coconut_bay-hair_oil_540x.jpg?v=1669884926",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "45.30",
     sold: 9,
     title: "Always ready",
     benefits: ["humidity"],
+    productType: "hair-mask",
   },
   {
     id: "21",
-    cover: "path/to/cover-image-9.jpg",
-    image: "path/to/product-image-9.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-refresh-me-scalp_cleanser_540x.jpg?v=1672664062",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "54.75",
     sold: 12,
     title: "Never ever rest",
     benefits: ["intensive-repair"],
+    productType: "styling-and-care",
   },
   {
     id: "22",
-    cover: "path/to/cover-image-10.jpg",
-    image: "path/to/product-image-10.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-calm_me-scalp_concentrate1_540x.png?v=1667394128",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "34.50",
     sold: 18,
     title: "Krem per dur",
     benefits: ["shine"],
+    productType: "styling-and-care",
   },
   {
     id: "23",
-    cover: "path/to/cover-image-11.jpg",
-    image: "path/to/product-image-11.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/files/DesignohneTitel_1_540x.png?v=1690799514",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "28.75",
     sold: 11,
     title: "Hair ruiner",
     benefits: ["volume"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "24",
-    cover: "path/to/cover-image-12.jpg",
-    image: "path/to/product-image-12.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/files/MM-wild_hibiscus-clay_mask_456b75ff-348b-4d6f-b7b4-3d45c45c8c31_540x.webp?v=1699256475",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "42.99",
     sold: 9,
     title: "Elbow smoother",
     benefits: ["humidity"],
+    productType: "expert-mermaid",
   },
   {
     id: "25",
-    cover: "path/to/cover-image-13.jpg",
-    image: "path/to/product-image-13.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-hydration_starter_540x.jpg?v=1659107564",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "31.25",
     sold: 14,
     title: "Handwasher",
     benefits: ["intensive-repair"],
+    productType: "starter-mermaid",
   },
   {
     id: "26",
-    cover: "path/to/cover-image-14.jpg",
-    image: "path/to/product-image-14.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-pure_algae-conditioner_540x.jpg?v=1669885208",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "48.90",
     sold: 5,
     title: "Scalp shampoo",
     benefits: ["volume"],
+    productType: "hair-mask",
   },
   {
     id: "27",
-    cover: "path/to/cover-image-15.jpg",
-    image: "path/to/product-image-15.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-mermaid_claymask_specialbox_DE_2_1296x.jpg?v=1668074116",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "25.75",
     sold: 16,
     title: "Nail polisher",
     benefits: ["intensive-repair"],
+    productType: "expert-mermaid",
   },
   {
     id: "28",
-    cover: "path/to/cover-image-16.jpg",
-    image: "path/to/product-image-16.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-calm_me-scalp_concentrate1_540x.png?v=1667394128",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "37.80",
     sold: 8,
     title: "Facemask",
+    productType: "starter-mermaid",
     benefits: ["humidity"],
   },
   {
     id: "29",
-    cover: "path/to/cover-image-17.jpg",
-    image: "path/to/product-image-17.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/MM-refresh-me-scalp_cleanser_540x.jpg?v=1672664062",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "23.45",
     sold: 13,
     title: "HandCare set",
     benefits: ["shine", "intensive-repair"],
+    productType: "hair-care",
   },
   {
     id: "30",
-    cover: "path/to/cover-image-18.jpg",
-    image: "path/to/product-image-18.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/files/MM-wild_hibiscus-clay_mask_456b75ff-348b-4d6f-b7b4-3d45c45c8c31_540x.webp?v=1699256475",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "40.20",
     sold: 10,
     title: "Eyelashes set",
     benefits: ["humidity", "intensive-repair"],
+    productType: "shampoo-conditioner",
   },
   {
     id: "31",
-    cover: "path/to/cover-image-19.jpg",
-    image: "path/to/product-image-19.jpg",
+    cover:
+      "https://www.mermaidme.de/cdn/shop/products/mm-pure_algae-conditioner_540x.jpg?v=1669885208",
+    image:
+      "https://www.mermaidme.de/cdn/shop/products/mm-claymask_specialbox-carrousel-1_1296x.jpg?v=1668074116",
     date: "2023-11-15",
     price: "29.99",
     sold: 15,
     title: "Eyebrows set",
     benefits: ["shine", "volume"],
+    productType: "starter-mermaid",
   },
 ];
 

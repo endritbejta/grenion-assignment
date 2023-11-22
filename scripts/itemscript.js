@@ -25,17 +25,20 @@ const previewImages = galleryPreview.querySelectorAll("img");
 
 console.log(images, previewImages);
 
+// current slide
 let currentSlide = 0;
 nextImageButton.addEventListener("click", () => {
+  // we make the button of the current photo invisible
   previewImages[currentSlide].style.border = "2px solid transparent";
-
+  // add 1 when we click next button, and handling special cases
   if (currentSlide === images.length - 1) {
     currentSlide = 0;
   } else {
     currentSlide += 1;
   }
-  console.log(currentSlide);
+  // moving the gallery photos on click
   galleryPhotos.style.transform = `translateX(-${currentSlide * 100}%)`;
+  // setting the new border to the current photo shown
   previewImages[currentSlide].style.border = "2px solid black";
 });
 
@@ -51,4 +54,33 @@ prevImageButton.addEventListener("click", () => {
   console.log(currentSlide);
   galleryPhotos.style.transform = `translateX(-${currentSlide * 100}%)`;
   previewImages[currentSlide].style.border = "2px solid black";
+});
+
+const itemInfoContainer = document.querySelector(".item__info");
+const additionalInfoContainer = itemInfoContainer.querySelector(
+  ".additional-information"
+);
+
+const additionalInfoTitles = additionalInfoContainer.querySelectorAll(".title");
+
+// adding event listeners to each one of the titles
+additionalInfoTitles.forEach((title) => {
+  title.addEventListener("click", (e) => {
+    additionalInfoTitles.forEach((titleInside) => {
+      if (titleInside.id !== title.id) {
+        title.classList.remove("activeTitle");
+      }
+    });
+    additionalInfoContainer
+      .querySelectorAll(".context")
+      .forEach((context) => context.classList.remove("activeContext"));
+    // adding the active state to the title we clicked
+    title.classList.toggle("activeTitle");
+    // finding the context of the said clicked title and updating it
+    const context = additionalInfoContainer.querySelector(
+      `.${title.id}-context`
+    );
+    console.log(context);
+    context.classList.toggle("activeContext");
+  });
 });
