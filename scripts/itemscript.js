@@ -70,19 +70,15 @@ additionalInfoTitles.forEach((title) => {
       titleInside.classList.remove("activeTitle");
     });
 
-    if (title.classList.contains("activeTitle")) {
-      console.log("rruning");
-    } else {
-      additionalInfoContainer
-        .querySelectorAll(".context")
-        .forEach((context) => context.classList.remove("activeContext"));
-      // adding the active state to the title we clicked
-      title.classList.toggle("activeTitle");
-      // finding the context of the said clicked title and updating it
-      const context = additionalInfoContainer.querySelector(
-        `.${title.id}-context`
-      );
-      context.classList.toggle("activeContext");
-    }
+    additionalInfoContainer
+      .querySelectorAll(".context")
+      .forEach((context) => context.classList.remove("activeContext"));
+    // adding the active state to the title we clicked
+    title.classList.toggle("activeTitle");
+    // finding the context of the said clicked title and updating it
+    const context = additionalInfoContainer.querySelector(
+      `.${title.id}-context`
+    );
+    context.classList.toggle("activeContext");
   });
 });
